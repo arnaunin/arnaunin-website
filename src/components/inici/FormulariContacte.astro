@@ -70,7 +70,7 @@ const f = textos(idioma).inici.formulari;
 
   <button type="submit" class="boto boto--paper envia">{f.envia}</button>
 
-  <p class="estat" role="status" aria-live="polite"></p>
+  <p class="estat-enviament" role="status" aria-live="polite"></p>
 </form>
 
 <script>
@@ -83,7 +83,7 @@ const f = textos(idioma).inici.formulari;
     const camps = Array.from(
       formulari.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]'),
     );
-    const estat = formulari.querySelector<HTMLElement>('.estat')!;
+    const estat = formulari.querySelector<HTMLElement>('.estat-enviament')!;
     const boto = formulari.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const textBoto = boto.textContent ?? '';
     let intentat = false;
@@ -123,7 +123,7 @@ const f = textos(idioma).inici.formulari;
       boto.disabled = true;
       boto.textContent = formulari.dataset.enviant ?? textBoto;
       estat.textContent = '';
-      estat.classList.remove('estat--error');
+      estat.classList.remove('estat-enviament--error');
 
       try {
         const dades = new URLSearchParams();
@@ -138,7 +138,7 @@ const f = textos(idioma).inici.formulari;
         intentat = false;
         estat.textContent = formulari.dataset.enviat ?? '';
       } catch {
-        estat.classList.add('estat--error');
+        estat.classList.add('estat-enviament--error');
         estat.textContent = formulari.dataset.error ?? '';
       } finally {
         boto.disabled = false;
@@ -261,11 +261,11 @@ const f = textos(idioma).inici.formulari;
     opacity: 0.8;
   }
 
-  .estat:empty {
+  .estat-enviament:empty {
     display: none;
   }
 
-  .estat {
+  .estat-enviament {
     padding: 14px 16px;
     border-radius: var(--radi-camp);
     border: 1px solid var(--color-sorra);
