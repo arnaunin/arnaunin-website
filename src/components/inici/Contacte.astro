@@ -1,0 +1,87 @@
+---
+import Icona from '../comu/Icona.astro';
+import Onades from '../comu/Onades.astro';
+import FormulariContacte from './FormulariContacte.astro';
+import { CORREU, TELEFON, WHATSAPP } from '../../config/lloc';
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const { idioma } = Astro.props;
+const t = textos(idioma).inici.contacte;
+---
+
+<section id="contacte" class="contacte fosc">
+  <Onades amplada={760} alcada={300} opacitat={0.1} linies={2} posicio="right: -60px; top: -60px" />
+  <div class="contenidor seccio contacte-cos">
+    <div class="contacte-text revela">
+      <div class="ratlla-accent" aria-hidden="true"></div>
+      <h2 class="titol">{t.titol}</h2>
+      <p class="paragraf">{t.text}</p>
+      <a href={WHATSAPP} class="boto boto--principal whatsapp">
+        <Icona nom="whatsapp" mida={18} gruix={1.8} />
+        {t.whatsapp}
+      </a>
+      <div class="directe">
+        <a href={`tel:${TELEFON}`}>{t.telefon}</a>
+        <a href={`mailto:${CORREU}`}>{t.correu}</a>
+      </div>
+    </div>
+    <FormulariContacte idioma={idioma} />
+  </div>
+</section>
+
+<style>
+  .contacte {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacte-cos {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 64px;
+  }
+
+  .contacte-text {
+    flex: 1 1 360px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .paragraf {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text-fosc);
+  }
+
+  .whatsapp {
+    align-self: flex-start;
+  }
+
+  .directe {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .directe a {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    color: var(--color-paper);
+    text-decoration: none;
+  }
+
+  .directe a:hover {
+    color: var(--color-sorra);
+    text-decoration: underline;
+  }
+</style>

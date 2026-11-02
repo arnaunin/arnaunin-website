@@ -1,0 +1,275 @@
+---
+/**
+ * Formulari de contacte per a Netlify Forms.
+ *
+ * - Netlify el detecta en publicar (atribut `data-netlify`) i desa els missatges
+ *   al tauler del lloc (Forms → «contacte»).
+ * - Camp antispam ocult: `bot-field` (netlify-honeypot).
+ * - Amb JavaScript, es valida de manera accessible i s'envia sense sortir de la pàgina.
+ *   Sense JavaScript, el navegador valida els camps obligatoris i Netlify mostra
+ *   la seva pàgina de confirmació.
+ */
+import { NOM_FORMULARI } from '../../config/lloc';
+import { ruta, textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const { idioma } = Astro.props;
+const f = textos(idioma).inici.formulari;
+---
+
+<form
+  class="formulari revela"
+  name={NOM_FORMULARI}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  aria-label={f.etiqueta}
+  data-enviant={f.enviant}
+  data-enviat={f.enviat}
+  data-error={f.errorEnviament}
+>
+  <input type="hidden" name="form-name" value={NOM_FORMULARI} />
+  <input type="hidden" name="idioma" value={idioma} />
+
+  <p class="titol-formulari">{f.titol}</p>
+
+  <p class="parany" aria-hidden="true">
+    <label>{f.parany}<input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
+  <div class="camp">
+    <label for="nom">{f.nom}</label>
+    <input id="nom" name="nom" type="text" autocomplete="name" required data-error={f.errors.nom} />
+    <p class="error" id="nom-error" hidden></p>
+  </div>
+
+  <div class="camp">
+    <label for="correu">{f.correu}</label>
+    <input id="correu" name="correu" type="email" autocomplete="email" required data-error={f.errors.correu} />
+    <p class="error" id="correu-error" hidden></p>
+  </div>
+
+  <div class="camp">
+    <label for="missatge">{f.missatge}</label>
+    <textarea id="missatge" name="missatge" rows="4" required data-error={f.errors.missatge}></textarea>
+    <p class="error" id="missatge-error" hidden></p>
+  </div>
+
+  <div class="camp camp--casella">
+    <label for="privacitat" class="casella">
+      <input id="privacitat" name="privacitat" type="checkbox" value="acceptada" required data-error={f.errors.privacitat} />
+      <span>
+        {f.privacitatAbans}<a href={ruta('privacitat', idioma)}>{f.privacitatEnllac}</a>{f.privacitatDespres}
+      </span>
+    </label>
+    <p class="error" id="privacitat-error" hidden></p>
+  </div>
+
+  <button type="submit" class="boto boto--paper envia">{f.envia}</button>
+
+  <p class="estat" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  const formulari = document.querySelector<HTMLFormElement>('form.formulari');
+
+  if (formulari) {
+    // Amb JavaScript, la validació la fem nosaltres (missatges propis i accessibles).
+    formulari.noValidate = true;
+
+    const camps = Array.from(
+      formulari.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]'),
+    );
+    const estat = formulari.querySelector<HTMLElement>('.estat')!;
+    const boto = formulari.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const textBoto = boto.textContent ?? '';
+    let intentat = false;
+
+    const valida = (camp: HTMLInputElement | HTMLTextAreaElement) => {
+      const valor = camp instanceof HTMLInputElement && camp.type === 'checkbox' ? camp.checked : camp.value.trim() !== '';
+      const correcte = valor && camp.checkValidity();
+      const error = document.getElementById(`${camp.id}-error`)!;
+      if (correcte) {
+        camp.removeAttribute('aria-invalid');
+        camp.removeAttribute('aria-describedby');
+        error.hidden = true;
+        error.textContent = '';
+      } else {
+        camp.setAttribute('aria-invalid', 'true');
+        camp.setAttribute('aria-describedby', error.id);
+        error.textContent = camp.dataset.error ?? '';
+        error.hidden = false;
+      }
+      return correcte;
+    };
+
+    for (const camp of camps) {
+      const esdeveniment = camp instanceof HTMLInputElement && camp.type === 'checkbox' ? 'change' : 'input';
+      camp.addEventListener(esdeveniment, () => intentat && valida(camp));
+    }
+
+    formulari.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      intentat = true;
+      const invalids = camps.filter((camp) => !valida(camp));
+      if (invalids.length > 0) {
+        invalids[0]!.focus();
+        return;
+      }
+
+      boto.disabled = true;
+      boto.textContent = formulari.dataset.enviant ?? textBoto;
+      estat.textContent = '';
+      estat.classList.remove('estat--error');
+
+      try {
+        const dades = new URLSearchParams();
+        new FormData(formulari).forEach((valor, clau) => dades.append(clau, String(valor)));
+        const resposta = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: dades.toString(),
+        });
+        if (!resposta.ok) throw new Error(String(resposta.status));
+        formulari.reset();
+        intentat = false;
+        estat.textContent = formulari.dataset.enviat ?? '';
+      } catch {
+        estat.classList.add('estat--error');
+        estat.textContent = formulari.dataset.error ?? '';
+      } finally {
+        boto.disabled = false;
+        boto.textContent = textBoto;
+      }
+    });
+  }
+</script>
+
+<style>
+  .formulari {
+    flex: 1 1 420px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--color-mariner-profund);
+    border: 1px solid var(--color-linia-fosca);
+    border-radius: var(--radi-targeta);
+    padding: 32px;
+  }
+
+  .titol-formulari {
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .parany {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .camp {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--color-text-fosc);
+  }
+
+  /* Com al disseny, el padding se suma a l'alçada mínima (content-box). */
+  input:not([type='checkbox']),
+  textarea {
+    box-sizing: content-box;
+    min-height: 48px;
+    padding: 12px 14px;
+    border-radius: var(--radi-camp);
+    border: 1px solid var(--color-pissarra);
+    background: var(--color-mariner);
+    color: var(--color-paper);
+    font: inherit;
+    font-size: 16px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input:not([type='checkbox']):focus-visible,
+  textarea:focus-visible {
+    outline-offset: 1px;
+    border-color: var(--color-sorra);
+  }
+
+  [aria-invalid='true']:not([type='checkbox']) {
+    border-color: var(--color-sorra);
+    box-shadow: inset 0 0 0 1px var(--color-sorra);
+  }
+
+  .casella {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+    color: var(--color-text-fosc-suau);
+  }
+
+  .casella input {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin: 2px 0 0;
+    accent-color: var(--color-sorra);
+  }
+
+  .error {
+    display: flex;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-sorra-clara);
+  }
+
+  .error::before {
+    content: '!';
+    flex: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-sorra);
+    color: var(--color-mariner);
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  .error[hidden] {
+    display: none;
+  }
+
+  .envia {
+    align-self: flex-start;
+  }
+
+  .envia:disabled {
+    cursor: progress;
+    opacity: 0.8;
+  }
+
+  .estat:empty {
+    display: none;
+  }
+
+  .estat {
+    padding: 14px 16px;
+    border-radius: var(--radi-camp);
+    border: 1px solid var(--color-sorra);
+    color: var(--color-paper);
+    line-height: 1.5;
+  }
+</style>

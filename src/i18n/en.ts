@@ -67,7 +67,7 @@ export const en: Traduccions = {
     hero: {
       ubicacio: `Web developer · ${POBLACIO}`,
       titolAbans: 'Websites and tools that work for you, ',
-      titolDestacat: 'not the other way round',
+      titolDestacat: 'not vice versa',
       titolDespres: '.',
       entradeta:
         'I’m Arnau. I design and build fast websites and custom systems so your business wins customers and wastes less time on repetitive tasks.',

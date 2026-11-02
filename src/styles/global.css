@@ -23,7 +23,7 @@ body {
   margin: 0;
   font-family: var(--font-text);
   font-size: var(--mida-cos);
-  line-height: 1.5;
+  line-height: normal;
   color: var(--color-paper);
   background: var(--color-mariner);
   overflow-x: hidden;
@@ -100,8 +100,9 @@ em {
 }
 
 /* ---------- Estructura ---------- */
+/* L'amplada màxima és la del contingut (1200 px); els marges laterals s'hi sumen. */
 .contenidor {
-  max-width: var(--amplada-maxima);
+  max-width: calc(var(--amplada-maxima) + 2 * var(--marge-lateral));
   margin: 0 auto;
   padding-left: var(--marge-lateral);
   padding-right: var(--marge-lateral);
@@ -182,13 +183,13 @@ em {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 48px;
-  padding: 13px 24px;
+  min-height: 44px;
+  padding: 14px 24px;
   border-radius: var(--radi-pindola);
   border: 1px solid transparent;
   font: inherit;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: normal;
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -235,8 +236,8 @@ em {
 .boto--paper:hover {
   background: var(--color-paper);
   color: var(--color-mariner);
-  padding-left: 26px;
-  padding-right: 26px;
+  min-height: 48px;
+  padding: 12px 26px;
 }
 
 .grup-botons {

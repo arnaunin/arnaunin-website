@@ -1,0 +1,257 @@
+---
+/** Secció destacada de La Suite (projecte principal) a l'inici. */
+import AvisFlotant from '../comu/AvisFlotant.astro';
+import Llum from '../comu/Llum.astro';
+import Marca from '../comu/Marca.astro';
+import Onades from '../comu/Onades.astro';
+import { WHATSAPP } from '../../config/lloc';
+import { ruta, textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const { idioma } = Astro.props;
+const t = textos(idioma).inici.suite;
+---
+
+<section id="restaurants" class="clar">
+  <div class="contenidor suite">
+    <div class="capcalera-suite revela">
+      <div class="marca-fila">
+        <Marca fons="clar" />
+        <span class="separador" aria-hidden="true"></span>
+        <p class="subtitol">{t.subtitol}</p>
+        <span class="insignia">{t.insignia}</span>
+      </div>
+      <h2 class="titol-suite" set:html={t.titolHtml} />
+      <p class="entradeta">{t.entradeta}</p>
+    </div>
+
+    <div class="panell-suite fosc revela">
+      <Llum mida={420} posicio="left: -120px; top: -120px" />
+      <Onades amplada={700} alcada={260} opacitat={0.12} linies={2} posicio="right: -60px; bottom: -50px" />
+
+      <div class="panell">
+        <div class="panell-text">
+          <h3 class="titol-panell" set:html={t.panell.titolHtml} />
+          <p class="panell-paragraf">{t.panell.text}</p>
+          <ul class="xips" role="list">
+            {t.panell.funcions.map((f) => <li class="xip">{f}</li>)}
+          </ul>
+          <div class="grup-botons">
+            <a href={ruta('suite', idioma)} class="boto boto--principal">{t.panell.botoPrincipal}</a>
+            <a href={WHATSAPP} class="boto boto--secundari">{t.panell.botoSecundari}</a>
+          </div>
+        </div>
+
+        <!-- Maqueta decorativa: les reserves de demà, amb el restaurant tancat -->
+        <div class="maqueta" aria-hidden="true">
+          <div class="targeta-reserves">
+            <div class="reserves-capcalera">
+              <div class="reserves-hora">
+                <p class="estat">{t.maqueta.estat}</p>
+                <p class="hora">{t.maqueta.hora}</p>
+              </div>
+              <p class="en-directe"><span class="punt"></span>{t.maqueta.enDirecte}</p>
+            </div>
+            <p class="etiqueta-petita">{t.maqueta.reservesDema}</p>
+            <ul class="reserves" role="list">
+              {
+                t.maqueta.reserves.map((r) => (
+                  <li class="revela">
+                    <span>
+                      <strong>{r.hora}</strong> · {r.nom}
+                    </span>
+                    <span class="detall">{r.detall}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <AvisFlotant
+            titol={t.maqueta.avisTitol}
+            text={t.maqueta.avisText}
+            posicio="left: -28px; bottom: -30px"
+            costat="esquerra"
+            ampladaMaxima={290}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .suite {
+    padding-top: var(--seccio);
+  }
+
+  .capcalera-suite {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 860px;
+    margin-bottom: 44px;
+  }
+
+  .marca-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .separador {
+    width: 48px;
+    height: 1px;
+    background: var(--color-maqueta-gris);
+  }
+
+  .subtitol {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-tinta);
+  }
+
+  .titol-suite {
+    font-family: var(--font-titol);
+    font-weight: 400;
+    font-size: clamp(2.3rem, 4.8vw, 3.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.4px;
+    text-wrap: balance;
+  }
+
+  .titol-suite :global(em) {
+    color: var(--color-torrat);
+  }
+
+  .entradeta {
+    max-width: 640px;
+    font-size: var(--mida-entradeta);
+    line-height: 1.6;
+    color: var(--color-text-clar);
+  }
+
+  /* ---- Panell fosc ---- */
+  .panell-suite {
+    position: relative;
+    border-radius: var(--radi-panell-gran);
+    overflow: hidden;
+    box-shadow: var(--ombra-panell);
+  }
+
+  .panell {
+    position: relative;
+    padding: 64px 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .panell-text {
+    flex: 1 1 440px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .titol-panell {
+    font-family: var(--font-titol);
+    font-weight: 400;
+    font-size: clamp(2rem, 3.6vw, 2.9rem);
+    line-height: 1.08;
+  }
+
+  .titol-panell :global(em) {
+    color: var(--color-sorra);
+  }
+
+  .panell-paragraf {
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: var(--color-text-fosc);
+  }
+
+  .panell-text .grup-botons {
+    margin-top: 6px;
+  }
+
+  .maqueta {
+    flex: 1 1 380px;
+    min-width: 0;
+    max-width: 440px;
+    position: relative;
+  }
+
+  .targeta-reserves {
+    background: var(--color-mariner-profund);
+    border: 1px solid var(--color-linia-fosca);
+    border-radius: var(--radi-panell-petit);
+    padding: 24px;
+    box-shadow: var(--ombra-fosca);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .reserves-capcalera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .reserves-hora {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .estat {
+    font-size: 13px;
+    color: var(--color-text-fosc-suau);
+  }
+
+  .hora {
+    font-family: var(--font-titol);
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+
+  .reserves {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .reserves li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radi-element);
+    background: var(--color-mariner);
+    font-size: 14px;
+  }
+
+  .detall {
+    color: var(--color-text-fosc-suau);
+  }
+
+  @media (max-width: 700px) {
+    .suite {
+      padding-bottom: var(--seccio);
+    }
+
+    .panell {
+      padding: 36px 22px;
+      gap: 48px;
+    }
+  }
+</style>

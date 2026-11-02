@@ -1,0 +1,28 @@
+---
+/** Pàgina d'inici (comuna als tres idiomes). */
+import Base from '../layouts/Base.astro';
+import Cinta from '../components/inici/Cinta.astro';
+import Contacte from '../components/inici/Contacte.astro';
+import Hero from '../components/inici/Hero.astro';
+import NoRestaurant from '../components/inici/NoRestaurant.astro';
+import Projectes from '../components/inici/Projectes.astro';
+import SobreMi from '../components/inici/SobreMi.astro';
+import SuiteDestacada from '../components/inici/SuiteDestacada.astro';
+import { DOMINI } from '../config/lloc';
+import { dadesEstructurades } from '../config/dades-estructurades';
+import { idiomaActual, textos } from '../i18n';
+
+const idioma = idiomaActual(Astro.currentLocale);
+const t = textos(idioma);
+const dades = dadesEstructurades(idioma, t, new URL(`/og/${idioma}.png`, DOMINI).href);
+---
+
+<Base idioma={idioma} pagina="inici" titol={t.meta.inici.titol} descripcio={t.meta.inici.descripcio} dades={dades}>
+  <Hero idioma={idioma} />
+  <Cinta idioma={idioma} />
+  <SuiteDestacada idioma={idioma} />
+  <NoRestaurant idioma={idioma} />
+  <Projectes idioma={idioma} />
+  <SobreMi idioma={idioma} />
+  <Contacte idioma={idioma} />
+</Base>
