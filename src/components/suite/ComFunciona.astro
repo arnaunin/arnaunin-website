@@ -1,0 +1,83 @@
+---
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma).suite.comFunciona;
+---
+
+<section id="com-funciona" class="clar">
+  <div class="contenidor seccio com-funciona">
+    <div class="capcalera-seccio revela">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h2 class="titol">{t.titol}</h2>
+    </div>
+    <ol class="passos">
+      {
+        t.passos.map((pas, i) => (
+          <li class="pas revela">
+            <span class="numero" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3>{pas.titol}</h3>
+            <p>{pas.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .com-funciona {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .capcalera-seccio {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .passos {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 32px;
+  }
+
+  .pas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 2px solid var(--color-mariner);
+    padding-top: 20px;
+    transition: border-color 0.3s ease;
+  }
+
+  .pas:hover {
+    border-color: var(--color-sorra);
+  }
+
+  .numero {
+    font-family: var(--font-titol);
+    font-size: 2rem;
+    color: var(--color-torrat);
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.6;
+    color: var(--color-text-clar);
+  }
+</style>

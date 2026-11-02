@@ -1,0 +1,80 @@
+---
+/** Pàgina 404, amb el mateix estil que la resta. */
+import Base from '../layouts/Base.astro';
+import Icona from '../components/comu/Icona.astro';
+import Llum from '../components/comu/Llum.astro';
+import Onades from '../components/comu/Onades.astro';
+import { WHATSAPP } from '../config/lloc';
+import { ruta, textos, type Idioma } from '../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const { idioma } = Astro.props;
+const t = textos(idioma);
+const n = t.noTrobada;
+---
+
+<Base idioma={idioma} titol={t.meta.noTrobada.titol} descripcio={t.meta.noTrobada.descripcio} indexable={false}>
+  <section class="fosc no-trobada">
+    <Llum mida={460} posicio="right: 8%; top: 4%" intensitat="mitjana" />
+    <Onades amplada={760} alcada={300} opacitat={0.14} posicio="left: -60px; bottom: -40px" />
+    <div class="contenidor"><div class="cos">
+      <p class="eyebrow entra">{n.eyebrow}</p>
+      <h1 class="titol-404 entra d1" set:html={n.titolHtml} />
+      <p class="text entra d2">{n.text}</p>
+      <div class="grup-botons entra d3">
+        <a href={ruta('inici', idioma)} class="boto boto--principal">{n.inici}</a>
+        <a href={WHATSAPP} class="boto boto--secundari">
+          <Icona nom="whatsapp" mida={18} gruix={1.8} />
+          {n.contacte}
+        </a>
+      </div>
+    </div></div>
+  </section>
+</Base>
+
+<style>
+  .no-trobada {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cos {
+    position: relative;
+    padding-top: 120px;
+    padding-bottom: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 760px;
+  }
+
+  .titol-404 {
+    font-family: var(--font-titol);
+    font-weight: 400;
+    font-size: clamp(2.7rem, 5.8vw, 4.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.5px;
+    text-wrap: balance;
+  }
+
+  .titol-404 :global(em) {
+    color: var(--color-sorra);
+  }
+
+  .text {
+    max-width: 580px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--color-text-fosc);
+  }
+
+  @media (max-width: 700px) {
+    .cos {
+      padding-top: 72px;
+      padding-bottom: 96px;
+    }
+  }
+</style>

@@ -1,0 +1,442 @@
+/* Tipografies autoallotjades (no es carreguen de Google). */
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/fraunces/opsz-italic.css';
+@import '@fontsource-variable/figtree/wght.css';
+@import '@fontsource/syne/latin-800.css';
+@import './tokens.css';
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background: var(--color-mariner);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: var(--mida-cos);
+  line-height: normal;
+  color: var(--color-paper);
+  background: var(--color-mariner);
+  overflow-x: hidden;
+  /* El peu queda sempre al fons, encara que la pàgina sigui curta. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+a {
+  color: var(--color-sorra);
+}
+
+a:hover {
+  color: var(--color-sorra-clara);
+}
+
+em {
+  font-style: italic;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-sorra);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.clar :focus-visible {
+  outline-color: var(--color-torrat);
+}
+
+[id] {
+  scroll-margin-top: 16px;
+}
+
+.visualment-amagat {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.salta {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--color-sorra);
+  color: var(--color-mariner);
+  font-weight: 600;
+  padding: 12px 18px;
+  border-radius: var(--radi-pindola);
+  text-decoration: none;
+}
+
+.salta:focus {
+  top: 12px;
+}
+
+/* ---------- Estructura ---------- */
+/* L'amplada màxima és la del contingut (1200 px); els marges laterals s'hi sumen. */
+.contenidor {
+  max-width: calc(var(--amplada-maxima) + 2 * var(--marge-lateral));
+  margin: 0 auto;
+  padding-left: var(--marge-lateral);
+  padding-right: var(--marge-lateral);
+}
+
+.seccio {
+  padding-top: var(--seccio);
+  padding-bottom: var(--seccio);
+}
+
+/* Seccions clares (crema) i fosques */
+.clar {
+  background: var(--color-crema);
+  color: var(--color-tinta);
+}
+
+.fosc {
+  background: var(--color-mariner);
+  color: var(--color-paper);
+}
+
+.fosc-profund {
+  background: var(--color-mariner-profund);
+  color: var(--color-paper);
+}
+
+.vora-superior {
+  border-top: 1px solid var(--color-linia-clara);
+}
+
+/* ---------- Tipografia ---------- */
+.eyebrow {
+  font-size: var(--mida-eyebrow);
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--color-torrat);
+}
+
+.fosc .eyebrow,
+.fosc-profund .eyebrow {
+  color: var(--color-sorra);
+}
+
+.titol {
+  font-family: var(--font-titol);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.titol em,
+.destacat {
+  color: var(--color-torrat);
+}
+
+.fosc .titol em,
+.fosc-profund .titol em,
+.fosc .destacat {
+  color: var(--color-sorra);
+}
+
+.equilibrat {
+  text-wrap: balance;
+}
+
+.etiqueta-petita {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-text-fosc-suau);
+}
+
+/* ---------- Botons ---------- */
+.boto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 14px 24px;
+  border-radius: var(--radi-pindola);
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  line-height: normal;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.boto:hover {
+  transform: translateY(-2px);
+}
+
+/* Principal sobre fosc: sorra */
+.boto--principal,
+.boto--principal:hover {
+  background: var(--color-sorra);
+  color: var(--color-mariner);
+}
+
+.boto--principal:hover {
+  background: var(--color-sorra-clara);
+}
+
+/* Secundari sobre fosc: vora pissarra */
+.boto--secundari,
+.boto--secundari:hover {
+  color: var(--color-paper);
+  border-color: var(--color-pissarra);
+}
+
+.boto--secundari:hover {
+  border-color: var(--color-sorra);
+}
+
+/* Principal sobre clar: mariner */
+.boto--fosc,
+.boto--fosc:hover {
+  background: var(--color-mariner);
+  color: var(--color-paper);
+}
+
+/* Botó d'enviar: paper */
+.boto--paper,
+.boto--paper:hover {
+  background: var(--color-paper);
+  color: var(--color-mariner);
+  min-height: 48px;
+  padding: 12px 26px;
+}
+
+.grup-botons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* ---------- Petits components ---------- */
+.xips {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.xip {
+  padding: 8px 14px;
+  border-radius: var(--radi-pindola);
+  border: 1px solid var(--color-pissarra);
+  font-size: 14px;
+}
+
+.insignia {
+  padding: 6px 12px;
+  border-radius: var(--radi-pindola);
+  background: var(--color-mariner);
+  color: var(--color-sorra);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.en-directe {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-sorra);
+}
+
+.punt {
+  flex: none;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-sorra);
+  animation: batec 1.8s ease-out infinite;
+}
+
+.ratlla-accent {
+  width: 40px;
+  height: 3px;
+  background: var(--color-sorra);
+}
+
+/* ---------- Animacions ---------- */
+@keyframes puja {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes flota {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes sura {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--r, 0deg));
+  }
+}
+
+@keyframes batec {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-sorra-halo);
+  }
+  100% {
+    box-shadow: 0 0 0 10px var(--color-sorra-halo-0);
+  }
+}
+
+@keyframes avis {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes llum {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes brilla {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Entrada del hero */
+.entra {
+  animation: puja 0.9s var(--corba-entrada) both;
+}
+
+.d1 {
+  animation-delay: 0.12s;
+}
+.d2 {
+  animation-delay: 0.28s;
+}
+.d3 {
+  animation-delay: 0.44s;
+}
+.d4 {
+  animation-delay: 0.6s;
+}
+
+/* Elements que suren */
+.sura {
+  animation: sura 6s ease-in-out infinite;
+}
+.sura2 {
+  animation-delay: -2s;
+}
+.sura3 {
+  animation-delay: -4s;
+}
+
+/*
+ * Aparició en fer scroll. Només s'amaga si hi ha JavaScript (classe `js` a <html>),
+ * i l'IntersectionObserver de src/scripts/revela.ts hi afegeix `.visible`.
+ */
+.js .revela {
+  opacity: 0;
+}
+
+/* `backwards` (i no `both`) perquè, en acabar, l'element torni als seus estils
+   i funcionin els efectes en passar-hi el ratolí. */
+.js .revela.visible {
+  opacity: 1;
+  animation: puja 0.9s var(--corba-entrada) backwards;
+}
+
+/* Reduir moviment: s'atura tot */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .js .revela {
+    opacity: 1;
+  }
+}

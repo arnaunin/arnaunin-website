@@ -1,0 +1,326 @@
+---
+/**
+ * Capçalera amb la navegació principal, el selector d'idioma i el menú mòbil.
+ * Per sota de 960 px, els enllaços i els idiomes passen al menú desplegable.
+ */
+import { IDIOMES, ruta, rutes, textos, type Idioma, type Pagina } from '../../i18n';
+import Icona from './Icona.astro';
+
+interface Props {
+  idioma: Idioma;
+  /** Pàgina actual (per al selector d'idioma i l'enllaç actiu). */
+  pagina?: Pagina;
+  /** Text i destí del botó de la dreta. */
+  crida: 'parlem' | 'demanaDemo';
+}
+
+const { idioma, pagina, crida } = Astro.props;
+const t = textos(idioma);
+const esInici = pagina === 'inici';
+const esSuite = pagina === 'suite';
+
+// A l'inici, els enllaços són àncores; a les altres pàgines porten a l'inici.
+const aInici = (ancora: string) => (esInici ? `#${ancora}` : ruta('inici', idioma, ancora));
+
+const enllacos = [
+  { text: t.comu.nav.restaurants, href: ruta('suite', idioma), actual: esSuite },
+  { text: t.comu.nav.projectes, href: aInici('projectes'), actual: false },
+  { text: t.comu.nav.sobreMi, href: aInici('sobre-mi'), actual: false },
+  { text: t.comu.nav.contacte, href: esSuite ? '#contacte' : aInici('contacte'), actual: false },
+];
+
+const hrefCrida = esInici || esSuite ? '#contacte' : ruta('inici', idioma, 'contacte');
+
+const nomsIdiomes: Record<Idioma, string> = { ca: 'Català', es: 'Castellano', en: 'English' };
+const idiomes = IDIOMES.map((codi) => ({
+  codi,
+  nom: nomsIdiomes[codi],
+  href: rutes[pagina ?? 'inici'][codi],
+  actual: codi === idioma,
+}));
+---
+
+<header class="capcalera">
+  <nav aria-label={t.comu.navegacio} class="contenidor nav">
+    <a href={ruta('inici', idioma)} class="logo">Arnau Nin</a>
+
+    <div class="nav-dreta">
+      <ul class="nav-enllacos" role="list">
+        {
+          enllacos.map((e) => (
+            <li>
+              <a href={e.href} class:list={['nav-enllac', { actual: e.actual }]} aria-current={e.actual ? 'page' : undefined}>
+                {e.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <ul class="idiomes" role="list" aria-label={t.comu.idioma}>
+        {
+          idiomes.map((i) => (
+            <li>
+              <a href={i.href} hreflang={i.codi} lang={i.codi} class:list={['idioma', { actual: i.actual }]} aria-current={i.actual ? 'true' : undefined}>
+                {i.codi.toUpperCase()}
+                <span class="visualment-amagat"> · {i.nom}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a href={hrefCrida} class="boto boto--principal boto-nav">{t.comu[crida]}</a>
+
+      <button
+        type="button"
+        class="hamburguesa"
+        aria-expanded="false"
+        aria-controls="menu-mobil"
+        data-obre={t.comu.obreMenu}
+        data-tanca={t.comu.tancaMenu}
+      >
+        <span class="visualment-amagat etiqueta-menu">{t.comu.obreMenu}</span>
+        <Icona nom="menu" mida={20} gruix={1.8} class="icona-obre" />
+        <Icona nom="tanca" mida={20} gruix={1.8} class="icona-tanca" />
+      </button>
+    </div>
+  </nav>
+
+  <div id="menu-mobil" class="menu-mobil">
+    <div class="contenidor menu-mobil-cos">
+      <ul class="menu-mobil-enllacos" role="list">
+        {
+          enllacos.map((e) => (
+            <li>
+              <a href={e.href} class:list={{ actual: e.actual }} aria-current={e.actual ? 'page' : undefined}>
+                {e.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="idiomes idiomes--mobil" role="list" aria-label={t.comu.idioma}>
+        {
+          idiomes.map((i) => (
+            <li>
+              <a href={i.href} hreflang={i.codi} lang={i.codi} class:list={['idioma', { actual: i.actual }]} aria-current={i.actual ? 'true' : undefined}>
+                {i.nom}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  const boto = document.querySelector<HTMLButtonElement>('.hamburguesa');
+  const menu = document.getElementById('menu-mobil');
+
+  if (boto && menu) {
+    const etiqueta = boto.querySelector('.etiqueta-menu');
+
+    const posa = (obert: boolean) => {
+      boto.setAttribute('aria-expanded', String(obert));
+      menu.classList.toggle('obert', obert);
+      if (etiqueta) etiqueta.textContent = (obert ? boto.dataset.tanca : boto.dataset.obre) ?? '';
+    };
+
+    boto.addEventListener('click', () => posa(boto.getAttribute('aria-expanded') !== 'true'));
+
+    // Escape tanca el menú i torna el focus al botó.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && boto.getAttribute('aria-expanded') === 'true') {
+        posa(false);
+        boto.focus();
+      }
+    });
+
+    // En triar un enllaç (sovint una àncora de la mateixa pàgina), es tanca.
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) posa(false);
+    });
+  }
+</script>
+
+<style>
+  .capcalera {
+    position: relative;
+    z-index: 20;
+    background: var(--color-mariner);
+    border-bottom: 1px solid var(--color-linia-fosca);
+  }
+
+  .nav {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: none;
+    color: var(--color-paper);
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  .nav-dreta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    font-size: 15px;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-enllacos {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-enllac {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: none;
+    color: var(--color-paper);
+  }
+
+  .nav-enllac:hover,
+  .nav-enllac.actual {
+    color: var(--color-sorra);
+  }
+
+  .nav-enllac.actual {
+    font-weight: 600;
+  }
+
+  .idiomes {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .idioma {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 24px;
+    text-decoration: none;
+    color: var(--color-text-fosc-suau);
+  }
+
+  .idioma:hover {
+    color: var(--color-paper);
+  }
+
+  .idioma.actual {
+    color: var(--color-sorra);
+    font-weight: 600;
+  }
+
+  .boto-nav {
+    min-height: 44px;
+    padding: 12px 18px;
+  }
+
+  .hamburguesa {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--color-pissarra);
+    background: transparent;
+    color: var(--color-paper);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hamburguesa :global(.icona-tanca),
+  .hamburguesa[aria-expanded='true'] :global(.icona-obre) {
+    display: none;
+  }
+
+  .hamburguesa[aria-expanded='true'] :global(.icona-tanca) {
+    display: block;
+  }
+
+  /* Menú mòbil */
+  .menu-mobil {
+    display: none;
+    border-top: 1px solid var(--color-linia-fosca);
+  }
+
+  .menu-mobil-cos {
+    padding-top: 16px;
+    padding-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .menu-mobil-enllacos a {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    border-bottom: 1px solid var(--color-linia-fosca);
+    font-family: var(--font-titol);
+    font-size: 1.5rem;
+    color: var(--color-paper);
+    text-decoration: none;
+  }
+
+  .menu-mobil-enllacos a.actual {
+    color: var(--color-sorra);
+  }
+
+  .idiomes--mobil {
+    gap: 20px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 960px) {
+    .nav-enllacos,
+    .idiomes:not(.idiomes--mobil) {
+      display: none;
+    }
+
+    /* Sense JavaScript, el menú es mostra obert; amb JavaScript, només si s'obre. */
+    .menu-mobil {
+      display: block;
+    }
+
+    :global(.js) .menu-mobil:not(.obert) {
+      display: none;
+    }
+
+    :global(.js) .hamburguesa {
+      display: inline-flex;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .boto-nav {
+      padding: 10px 16px;
+    }
+  }
+</style>

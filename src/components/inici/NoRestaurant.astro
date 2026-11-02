@@ -1,0 +1,76 @@
+---
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma).inici.noRestaurant;
+---
+
+<section class="clar">
+  <div class="contenidor no-restaurant revela">
+    <div class="caixa-cta">
+      <div class="caixa-text">
+        <h2 class="caixa-titol">{t.titol}</h2>
+        <p>{t.text}</p>
+      </div>
+      <a href="#contacte" class="boto boto--fosc">{t.boto}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .no-restaurant {
+    padding-top: 48px;
+    padding-bottom: var(--seccio);
+  }
+
+  .caixa-cta {
+    border: 1px solid var(--color-maqueta-linia);
+    border-radius: var(--radi-caixa);
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-blanc);
+  }
+
+  .caixa-text {
+    flex: 1 1 420px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .caixa-titol {
+    font-family: var(--font-titol);
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.15;
+  }
+
+  .caixa-text p {
+    line-height: 1.6;
+    color: var(--color-text-clar);
+  }
+
+  .boto {
+    padding-left: 26px;
+    padding-right: 26px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) {
+    .caixa-cta {
+      padding: 28px 22px;
+    }
+
+    .boto {
+      white-space: normal;
+    }
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+/** Cinta de paraules que corre. Decorativa: el contingut ja és a la pàgina. */
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const paraules = textos(Astro.props.idioma).inici.cinta;
+// Es repeteix dues vegades perquè l'animació (–50 %) sigui contínua.
+const repetides = [...paraules, ...paraules];
+---
+
+<div class="cinta" aria-hidden="true">
+  <div class="cinta-pista">
+    {
+      repetides.map((paraula) => (
+        <>
+          <span>{paraula}</span>
+          <span>✦</span>
+        </>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .cinta {
+    background: var(--color-sorra);
+    color: var(--color-mariner);
+    overflow: hidden;
+    padding: 16px 0;
+  }
+
+  .cinta-pista {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    font-family: var(--font-titol);
+    font-size: 1.3rem;
+    white-space: nowrap;
+    animation: corre 38s linear infinite;
+  }
+
+  /* El darrer element de la primera meitat també porta separació, perquè el bucle no salti. */
+  .cinta-pista > span:last-child {
+    margin-right: 40px;
+  }
+
+  @keyframes corre {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

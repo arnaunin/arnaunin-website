@@ -1,0 +1,60 @@
+---
+/** Crida final de La Suite: demana una demo. */
+import Icona from '../comu/Icona.astro';
+import Onades from '../comu/Onades.astro';
+import { CORREU, WHATSAPP } from '../../config/lloc';
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma).suite.crida;
+const correu = `mailto:${CORREU}?subject=${encodeURIComponent(t.assumpteCorreu)}`;
+---
+
+<section id="contacte" class="crida fosc">
+  <Onades amplada={760} alcada={300} opacitat={0.1} linies={2} posicio="right: -60px; bottom: -80px" />
+  <div class="crida-cos seccio revela">
+    <div class="ratlla-accent" aria-hidden="true"></div>
+    <h2 class="titol equilibrat">{t.titol}</h2>
+    <p class="paragraf">{t.text}</p>
+    <div class="grup-botons">
+      <a href={WHATSAPP} class="boto boto--principal">
+        <Icona nom="whatsapp" mida={18} gruix={1.8} />
+        {t.whatsapp}
+      </a>
+      <a href={correu} class="boto boto--secundari">{t.correu}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .crida {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .crida-cos {
+    position: relative;
+    max-width: calc(800px + 2 * var(--marge-lateral));
+    margin: 0 auto;
+    padding-left: var(--marge-lateral);
+    padding-right: var(--marge-lateral);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    text-align: center;
+  }
+
+  .paragraf {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text-fosc);
+  }
+
+  .grup-botons {
+    justify-content: center;
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+/**
+ * Motiu d'onades de la targeta de visita: línies ondulades color sorra,
+ * molt transparents, que es mouen lentament. És decoratiu.
+ */
+interface Props {
+  amplada: number;
+  alcada: number;
+  opacitat: number;
+  /** Nombre de línies (2 o 3). */
+  linies?: 2 | 3;
+  gruix?: number;
+  /** Posició absoluta dins la secció, p. ex. `left: -60px; bottom: -40px`. */
+  posicio: string;
+}
+
+const { amplada, alcada, opacitat, linies = 3, gruix = 0.5, posicio } = Astro.props;
+
+const camins = [
+  'M0 40 C 25 28, 45 28, 70 40 S 115 52, 140 40 S 175 28, 190 34',
+  'M0 58 C 25 46, 45 46, 70 58 S 115 70, 140 58 S 175 46, 190 52',
+  'M0 76 C 25 64, 45 64, 70 76 S 115 88, 140 76 S 175 64, 190 70',
+].slice(0, linies);
+---
+
+<svg
+  class="onades"
+  aria-hidden="true"
+  focusable="false"
+  width={amplada}
+  height={alcada}
+  viewBox="0 0 190 90"
+  preserveAspectRatio="none"
+  style={`${posicio}; opacity: ${opacitat}`}
+>
+  {camins.map((d, i) => <path class={`onada onada${i + 1}`} d={d} fill="none" stroke-width={gruix} />)}
+</svg>
+
+<style>
+  .onades {
+    position: absolute;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .onada {
+    stroke: var(--color-sorra);
+    animation: flota 7s ease-in-out infinite;
+  }
+
+  .onada2 {
+    animation-delay: -2.3s;
+  }
+
+  .onada3 {
+    animation-delay: -4.6s;
+  }
+</style>

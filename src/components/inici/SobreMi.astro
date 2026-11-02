@@ -1,0 +1,184 @@
+---
+import { Picture } from 'astro:assets';
+import arnau from '../../assets/img/arnau.jpg';
+import Icona from '../comu/Icona.astro';
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma);
+const s = t.inici.sobreMi;
+---
+
+<section id="sobre-mi" class="fosc-profund">
+  <div class="contenidor seccio sobre-mi">
+    <div class="presentacio">
+      <div class="foto revela">
+        <div class="foto-marc" aria-hidden="true"></div>
+        <Picture
+          src={arnau}
+          alt={s.altFoto}
+          formats={['avif', 'webp']}
+          widths={[320, 400, 600, 800]}
+          sizes="(max-width: 448px) calc(100vw - 48px), 400px"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="presentacio-text revela">
+        <p class="eyebrow">{s.eyebrow}</p>
+        <h2 class="titol">{s.titol}</h2>
+        {s.paragrafs.map((p) => <p class="paragraf">{p}</p>)}
+        <dl class="dades">
+          <div>
+            <dt class="etiqueta-petita">{s.dades.estudis}</dt>
+            <dd>{t.provisional.estudis}</dd>
+          </div>
+          <div>
+            <dt class="etiqueta-petita">{s.dades.eines}</dt>
+            <dd>{s.dades.einesValor}</dd>
+          </div>
+          <div>
+            <dt class="etiqueta-petita">{s.dades.idiomes}</dt>
+            <dd>{s.dades.idiomesValor}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="serveis-bloc">
+      <h2 class="eyebrow revela">{s.serveisEyebrow}</h2>
+      <ul class="serveis" role="list">
+        {
+          s.serveis.map((servei) => (
+            <li class="servei revela">
+              <Icona nom={servei.icona} mida={26} />
+              <h3>{servei.titol}</h3>
+              <p>{servei.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sobre-mi {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .presentacio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .foto {
+    flex: 1 1 300px;
+    max-width: 400px;
+    position: relative;
+  }
+
+  .foto-marc {
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 2px solid var(--color-sorra);
+    border-radius: var(--radi-targeta);
+  }
+
+  .foto :global(img) {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 35%;
+    border-radius: var(--radi-targeta);
+    display: block;
+  }
+
+  .presentacio-text {
+    flex: 1 1 440px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .paragraf {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-fosc);
+  }
+
+  .dades {
+    margin: 8px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-linia-fosca);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  .dades div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dades dd {
+    margin: 0;
+    color: var(--color-paper);
+  }
+
+  .serveis-bloc {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .serveis {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 20px;
+  }
+
+  .servei {
+    border: 1px solid var(--color-linia-fosca);
+    border-radius: var(--radi-targeta);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--color-mariner);
+    color: var(--color-sorra);
+    transition:
+      transform 0.35s var(--corba-entrada),
+      border-color 0.35s ease;
+  }
+
+  .servei:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-sorra);
+  }
+
+  .servei h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-paper);
+  }
+
+  .servei p {
+    line-height: 1.6;
+    color: var(--color-text-fosc-suau);
+  }
+</style>

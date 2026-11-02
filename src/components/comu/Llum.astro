@@ -1,0 +1,35 @@
+---
+/** Halo de llum color sorra que respira lentament. Decoratiu. */
+interface Props {
+  mida: number;
+  /** Posició absoluta, p. ex. `right: 8%; top: 12%`. */
+  posicio: string;
+  intensitat?: 'mitjana' | 'suau';
+}
+
+const { mida, posicio, intensitat = 'suau' } = Astro.props;
+---
+
+<div
+  class:list={['llum', `llum--${intensitat}`]}
+  aria-hidden="true"
+  style={`width: ${mida}px; height: ${mida}px; ${posicio}`}
+>
+</div>
+
+<style>
+  .llum {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: llum 8s ease-in-out infinite;
+  }
+
+  .llum--mitjana {
+    background: radial-gradient(circle, var(--color-sorra-llum-22) 0%, var(--color-sorra-halo-0) 70%);
+  }
+
+  .llum--suau {
+    background: radial-gradient(circle, var(--color-sorra-llum-20) 0%, var(--color-sorra-halo-0) 70%);
+  }
+</style>

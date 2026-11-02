@@ -1,0 +1,92 @@
+---
+/**
+ * Plantilla comuna de totes les pàgines: <head> amb el SEO, capçalera, peu
+ * i els scripts mínims (aparició en fer scroll).
+ */
+import '../styles/global.css';
+import figtree from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
+import fraunces from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url';
+import Capcalera from '../components/comu/Capcalera.astro';
+import Peu from '../components/comu/Peu.astro';
+import { DOMINI, NOM } from '../config/lloc';
+import { IDIOMA_PER_DEFECTE, IDIOMES, LOCALE_OG, rutes, textos, type Idioma, type Pagina } from '../i18n';
+
+interface Props {
+  idioma: Idioma;
+  /** Pàgina del mapa de rutes. Sense pàgina (404) no hi ha canònica ni `hreflang`. */
+  pagina?: Pagina;
+  titol: string;
+  descripcio: string;
+  crida?: 'parlem' | 'demanaDemo';
+  /** Dades estructurades (JSON-LD) opcionals. */
+  dades?: object;
+  indexable?: boolean;
+}
+
+const { idioma, pagina, titol, descripcio, crida = 'parlem', dades, indexable = true } = Astro.props;
+const t = textos(idioma);
+
+const canonica = pagina ? new URL(rutes[pagina][idioma], DOMINI).href : undefined;
+const alternatives = pagina
+  ? IDIOMES.map((codi) => ({ codi, href: new URL(rutes[pagina][codi], DOMINI).href }))
+  : [];
+const xDefecte = pagina ? new URL(rutes[pagina][IDIOMA_PER_DEFECTE], DOMINI).href : undefined;
+const imatgeOg = new URL(`/og/${idioma}.png`, DOMINI).href;
+---
+
+<!doctype html>
+<html lang={idioma}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titol}</title>
+    <meta name="description" content={descripcio} />
+    {!indexable && <meta name="robots" content="noindex" />}
+    {canonica && <link rel="canonical" href={canonica} />}
+    {alternatives.map((a) => <link rel="alternate" hreflang={a.codi} href={a.href} />)}
+    {xDefecte && <link rel="alternate" hreflang="x-default" href={xDefecte} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={NOM} />
+    <meta property="og:title" content={titol} />
+    <meta property="og:description" content={descripcio} />
+    {canonica && <meta property="og:url" content={canonica} />}
+    <meta property="og:image" content={imatgeOg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={LOCALE_OG[idioma]} />
+    {IDIOMES.filter((c) => c !== idioma).map((c) => <meta property="og:locale:alternate" content={LOCALE_OG[c]} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#1b2a33" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="preload" href={figtree} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fraunces} as="font" type="font/woff2" crossorigin />
+
+    <!-- Marca que hi ha JavaScript: permet amagar les seccions fins que apareixen. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    {dades && <script type="application/ld+json" set:html={JSON.stringify(dades)} />}
+  </head>
+  <body>
+    <a href="#contingut" class="salta">{t.comu.saltaContingut}</a>
+    <Capcalera idioma={idioma} pagina={pagina} crida={crida} />
+    <main id="contingut" tabindex="-1">
+      <slot />
+    </main>
+    <Peu idioma={idioma} />
+
+    <script>
+      import '../scripts/revela';
+    </script>
+  </body>
+</html>
+
+<style>
+  main:focus {
+    outline: none;
+  }
+</style>
