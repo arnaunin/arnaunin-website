@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Arnau Nin · Guia d'estils</title>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&amp;family=Figtree:wght@400;500;600&amp;family=Syne:wght@700;800&amp;display=swap">
+<style>
+body{margin:0;background:#F6F3EE}
+@keyframes batec{0%{box-shadow:0 0 0 0 rgba(217,179,140,.55)}100%{box-shadow:0 0 0 10px rgba(217,179,140,0)}}
+@keyframes brilla{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.punt{animation:batec 1.8s ease-out infinite}
+.marca{background:linear-gradient(100deg,#8A5A2E 0%,#8A5A2E 35%,#D9B38C 50%,#8A5A2E 65%,#8A5A2E 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:brilla 5s linear infinite}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="font-family: 'Figtree', system-ui, sans-serif; color: #1C1B19; background: #F6F3EE">
+<div style="max-width: 1200px; margin: 0 auto; padding: 80px 24px 100px; display: flex; flex-direction: column; gap: 80px">
+
+<header style="display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #8A5A2E">Web personal · Arnau Nin</p>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 3.4rem; line-height: 1.05">Guia d’estils</h1>
+<p style="margin: 0; max-width: 680px; font-size: 1.1rem; line-height: 1.6; color: #4A4640">Colors, tipografies i components que fa servir la web. La mateixa línia que la targeta de visita: fosc mariner, crema i un accent color sorra.</p>
+</header>
+
+<!-- COLORS -->
+<section style="display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2rem; border-bottom: 1px solid #E2DBCF; padding-bottom: 14px">Paleta de colors</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 18px">
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #1B2A33"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Mariner</strong><code>#1B2A33</code><span style="font-size: 13px; color: #5E5A54">Fons principal fosc, botons foscos</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #142029"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Mariner profund</strong><code>#142029</code><span style="font-size: 13px; color: #5E5A54">Seccions alternes, peu, targetes fosques</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #2C3E49"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Línia fosca</strong><code>#2C3E49</code><span style="font-size: 13px; color: #5E5A54">Vores sobre fons fosc</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #4A5E6A"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Pissarra</strong><code>#4A5E6A</code><span style="font-size: 13px; color: #5E5A54">Vores de botons secundaris i camps</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #D9B38C"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Sorra (accent)</strong><code>#D9B38C</code><span style="font-size: 13px; color: #5E5A54">Botó principal, destacats sobre fosc</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #8A5A2E"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Torrat</strong><code>#8A5A2E</code><span style="font-size: 13px; color: #5E5A54">Accent sobre fons clar (eyebrows, icones)</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #F6F3EE; border-bottom: 1px solid #E2DBCF"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Crema</strong><code>#F6F3EE</code><span style="font-size: 13px; color: #5E5A54">Fons de les seccions clares</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #E2DBCF"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Línia clara</strong><code>#E2DBCF</code><span style="font-size: 13px; color: #5E5A54">Vores i separadors sobre crema</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #1C1B19"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Tinta</strong><code>#1C1B19</code><span style="font-size: 13px; color: #5E5A54">Títols sobre fons clar</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #4A4640"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Text clar</strong><code>#4A4640</code><span style="font-size: 13px; color: #5E5A54">Paràgrafs sobre fons clar</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #F3EEE6; border-bottom: 1px solid #E2DBCF"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Paper</strong><code>#F3EEE6</code><span style="font-size: 13px; color: #5E5A54">Títols sobre fons fosc</span></div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; overflow: hidden"><div style="height: 110px; background: #D8D2C7"></div><div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><strong>Text fosc</strong><code>#D8D2C7</code> / <code>#B9B2A6</code><span style="font-size: 13px; color: #5E5A54">Paràgrafs i text secundari sobre fosc</span></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 18px">
+<div style="flex: 1 1 300px; background: #1B2A33; color: #F3EEE6; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><strong>Combinació fosca</strong><span style="color: #D8D2C7">Mariner + paper + sorra. Hero, contacte, panell de La Suite.</span></div>
+<div style="flex: 1 1 300px; background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 6px"><strong>Combinació clara</strong><span style="color: #4A4640">Crema + tinta + torrat. Seccions de contingut i projectes.</span></div>
+</div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section style="display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2rem; border-bottom: 1px solid #E2DBCF; padding-bottom: 14px">Tipografies</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 4rem; line-height: 1">Aa <em style="color: #8A5A2E">Aa</em></p>
+<strong>Fraunces</strong>
+<span style="color: #4A4640; line-height: 1.5">Títols i frases destacades. Pes 400, cursiva per a la paraula clau en color accent.</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 4rem; line-height: 1; font-weight: 500">Aa</p>
+<strong>Figtree</strong>
+<span style="color: #4A4640; line-height: 1.5">Text, menús, botons i formularis. Pesos 400, 500 i 600.</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<p class="marca" style="margin: 0; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; letter-spacing: 6px; line-height: 1.2">LA SUITE</p>
+<strong>Syne</strong>
+<span style="color: #4A4640; line-height: 1.5">Només per al nom de La Suite. Pes 800, majúscules molt espaiades.</span>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 12px 28px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid #EEE8DE"><code style="width: 150px; color: #5E5A54">H1 · 44–77px</code><span style="font-family: 'Fraunces', Georgia, serif; font-size: 3.4rem; line-height: 1.05">Webs i eines que <em style="color: #8A5A2E">treballen</em></span></div>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid #EEE8DE"><code style="width: 150px; color: #5E5A54">H2 · 32–48px</code><span style="font-family: 'Fraunces', Georgia, serif; font-size: 2.6rem; line-height: 1.1">Feina feta, a prop de casa.</span></div>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid #EEE8DE"><code style="width: 150px; color: #5E5A54">H3 · 18–26px</code><span style="font-size: 1.15rem; font-weight: 600">Reserves a qualsevol hora</span></div>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid #EEE8DE"><code style="width: 150px; color: #5E5A54">Eyebrow · 13px</code><span style="font-size: 13px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #8A5A2E">Per a qualsevol negoci</span></div>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid #EEE8DE"><code style="width: 150px; color: #5E5A54">Entradeta · 18–19px</code><span style="font-size: 1.15rem; line-height: 1.6; color: #4A4640; max-width: 700px">Dissenyo i programo webs ràpides i sistemes a mida.</span></div>
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 24px; padding: 18px 0"><code style="width: 150px; color: #5E5A54">Cos · 16px</code><span style="line-height: 1.6; color: #4A4640; max-width: 700px">Text de paràgraf amb interlineat 1.6 per llegir còmodament al mòbil.</span></div>
+</div>
+</section>
+
+<!-- COMPONENTS -->
+<section style="display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2rem; border-bottom: 1px solid #E2DBCF; padding-bottom: 14px">Botons i components</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<div style="flex: 1 1 520px; background: #1B2A33; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 22px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #D9B38C">Sobre fosc</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<a href="#" style="text-decoration: none; background: #D9B38C; color: #1B2A33; font-weight: 600; padding: 15px 24px; border-radius: 999px">Principal</a>
+<a href="#" style="text-decoration: none; color: #F3EEE6; font-weight: 600; padding: 15px 24px; border-radius: 999px; border: 1px solid #4A5E6A">Secundari</a>
+<a href="#" style="text-decoration: none; background: #F3EEE6; color: #1B2A33; font-weight: 600; padding: 13px 26px; border-radius: 999px">Envia</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span style="padding: 8px 14px; border-radius: 999px; border: 1px solid #4A5E6A; font-size: 14px; color: #F3EEE6">Etiqueta</span>
+<span style="padding: 6px 12px; border-radius: 999px; background: #142029; color: #D9B38C; font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase">Insígnia</span>
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #D9B38C; font-weight: 600"><span class="punt" style="width: 8px; height: 8px; border-radius: 50%; background: #D9B38C; display: inline-block"></span>En directe</span>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; color: #D8D2C7">Camp de formulari<input type="text" placeholder="Nom" style="min-height: 48px; padding: 12px 14px; border-radius: 10px; border: 1px solid #4A5E6A; background: #142029; color: #F3EEE6; font: inherit; font-size: 16px"></label>
+</div>
+<div style="flex: 1 1 520px; background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 22px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #8A5A2E">Sobre clar</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<a href="#" style="text-decoration: none; background: #1B2A33; color: #F3EEE6; font-weight: 600; padding: 15px 24px; border-radius: 999px">Principal</a>
+<a href="#" style="text-decoration: none; color: #1B2A33; font-weight: 600">Enllaç de text →</a>
+</div>
+<div style="display: flex; align-items: center; gap: 12px; background: #F6F3EE; border: 1px solid #E2DBCF; border-radius: 14px; padding: 14px 18px; max-width: 320px; box-shadow: 0 18px 40px rgba(27,42,51,.12)">
+<span style="width: 34px; height: 34px; border-radius: 50%; background: #1B2A33; display: inline-flex; align-items: center; justify-content: center; flex: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9B38C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px">Avís flotant</strong><span style="font-size: 13px; color: #4A4640">Notificacions animades als mockups</span></span>
+</div>
+<div style="display: flex; gap: 16px; align-items: center">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A5A2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A5A2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 10h18M9 10v10"></path></svg>
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A5A2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>
+<span style="font-size: 14px; color: #5E5A54">Icones de línia, traç 1.6, 24px</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FORMES I MOVIMENT -->
+<section style="display: flex; flex-direction: column; gap: 28px">
+<h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: 2rem; border-bottom: 1px solid #E2DBCF; padding-bottom: 14px">Formes, espais i moviment</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px"><strong>Cantonades</strong><span style="color: #4A4640; line-height: 1.6">Botons en píndola (999px) · camps 10px · targetes 16px · panells grans 24–28px.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px"><strong>Espais</strong><span style="color: #4A4640; line-height: 1.6">Amplada màxima 1200px · marges laterals 24px · seccions 110px (72px al mòbil).</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px"><strong>Ombres</strong><span style="color: #4A4640; line-height: 1.6">Suaus i amples, tenyides de mariner: <code>0 22px 44px rgba(27,42,51,.14)</code>.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px"><strong>Motiu d’onades</strong><span style="color: #4A4640; line-height: 1.6">Tres línies ondulades color sorra, molt transparents, que es mouen lentament. Ve de la targeta.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px"><strong>Animacions</strong><span style="color: #4A4640; line-height: 1.6">Entrada pujant (0.9s), seccions que apareixen en fer scroll, targetes que s’aixequen en passar-hi el ratolí, avisos flotants.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E2DBCF; border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px"><strong>Accessibilitat</strong><span style="color: #4A4640; line-height: 1.6">Tot el moviment s’atura amb «reduir moviment». Objectius tàctils de 44px o més. Text de 16px als camps.</span></div>
+</div>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
