@@ -1,0 +1,58 @@
+---
+/** Nom de La Suite amb la tipografia Syne i la lluentor animada. */
+import { NOM_SUITE } from '../../config/lloc';
+
+interface Props {
+  /** `clar`: sobre crema (torrat). `fosc`: sobre mariner (sorra). */
+  fons: 'clar' | 'fosc';
+}
+
+const { fons } = Astro.props;
+---
+
+<p class:list={['marca', `marca--${fons}`]}>{NOM_SUITE}</p>
+
+<style>
+  .marca {
+    font-family: var(--font-marca);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1;
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brilla 5s linear infinite;
+  }
+
+  .marca--clar {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-torrat) 0%,
+      var(--color-torrat) 35%,
+      var(--color-sorra) 50%,
+      var(--color-torrat) 65%,
+      var(--color-torrat) 100%
+    );
+  }
+
+  .marca--fosc {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-sorra) 0%,
+      var(--color-sorra) 35%,
+      var(--color-sorra-llum) 50%,
+      var(--color-sorra) 65%,
+      var(--color-sorra) 100%
+    );
+  }
+
+  @media (forced-colors: active) {
+    .marca {
+      background: none;
+      color: CanvasText;
+    }
+  }
+</style>

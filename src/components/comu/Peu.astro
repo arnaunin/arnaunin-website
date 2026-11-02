@@ -1,0 +1,62 @@
+---
+import { ruta, textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const { idioma } = Astro.props;
+const t = textos(idioma);
+const any = new Date().getFullYear();
+---
+
+<footer class="peu">
+  <div class="contenidor peu-cos">
+    <p>© {any} {t.comu.peu.drets}</p>
+    <nav aria-label={t.comu.peu.legal}>
+      <ul role="list">
+        <li><a href={ruta('avisLegal', idioma)}>{t.comu.peu.avisLegal}</a></li>
+        <li><a href={ruta('privacitat', idioma)}>{t.comu.peu.privacitat}</a></li>
+        <li><a href={ruta('galetes', idioma)}>{t.comu.peu.galetes}</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .peu {
+    background: var(--color-mariner-profund);
+    border-top: 1px solid var(--color-linia-fosca);
+  }
+
+  .peu-cos {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--color-text-fosc-suau);
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    color: var(--color-text-fosc-suau);
+  }
+
+  a:hover {
+    color: var(--color-paper);
+  }
+</style>

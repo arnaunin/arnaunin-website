@@ -1,0 +1,159 @@
+---
+/**
+ * Avís flotant de les maquetes: apareix (animació `avis`) i després sura.
+ * Va dins de maquetes decoratives (`aria-hidden`).
+ */
+import Icona from './Icona.astro';
+
+interface Props {
+  titol: string;
+  text: string;
+  icona?: 'check' | 'correu';
+  /** Posició absoluta, p. ex. `left: -28px; bottom: -30px`. */
+  posicio: string;
+  /** Classe que ajusta la posició al mòbil. */
+  costat: 'esquerra' | 'dreta';
+  /** Retard de l'aparició, en segons. 0 = sense animació d'entrada. */
+  retard?: number;
+  /** Si apareix quan la secció entra a la pantalla (en lloc de quan es carrega). */
+  ambScroll?: boolean;
+  /** Variant de mida: `normal` (34 px) o `petita` (30 px). */
+  mida?: 'normal' | 'mitjana' | 'petita';
+  surar?: 'sura' | 'sura2' | 'sura3' | false;
+  ampladaMaxima?: number;
+}
+
+const {
+  titol,
+  text,
+  icona = 'check',
+  posicio,
+  costat,
+  retard = 0,
+  ambScroll = false,
+  mida = 'normal',
+  surar = 'sura',
+  ampladaMaxima,
+} = Astro.props;
+---
+
+<div
+  class:list={['avis-flotant', `avis-flotant--${costat}`, { 'avis-flotant--entra': retard > 0, 'avis-scroll': ambScroll }]}
+  style={`${posicio}; --retard: ${retard}s`}
+>
+  <div
+    class:list={['avis-cos', `avis-cos--${mida}`, surar && ['sura', surar !== 'sura' && surar]]}
+    style={ampladaMaxima ? `max-width: ${ampladaMaxima}px` : undefined}
+  >
+    <span class="avis-icona"><Icona nom={icona} mida={mida === 'petita' ? 14 : mida === 'mitjana' ? 15 : 16} gruix={icona === 'check' ? 2.4 : 2} /></span>
+    <span class="avis-text">
+      <strong>{titol}</strong>
+      <span>{text}</span>
+    </span>
+  </div>
+</div>
+
+<style>
+  .avis-flotant {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .avis-flotant--entra {
+    animation: avis 0.7s var(--retard) var(--corba-avis) both;
+  }
+
+  /* Els avisos que depenen de l'scroll esperen que la secció sigui visible. */
+  :global(.js .revela:not(.visible)) .avis-scroll {
+    animation: none;
+    opacity: 0;
+  }
+
+  .avis-cos {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-crema);
+    color: var(--color-tinta);
+    border-radius: var(--radi-avis);
+    padding: 14px 18px;
+    box-shadow: var(--ombra-avis);
+  }
+
+  .avis-cos--mitjana {
+    padding: 12px 16px;
+    border: 1px solid var(--color-linia-clara);
+  }
+
+  .avis-cos--petita {
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .avis-icona {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-mariner);
+    color: var(--color-sorra);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avis-icona :global(svg) {
+    display: inline;
+  }
+
+  .avis-cos--mitjana .avis-icona {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avis-cos--petita .avis-icona {
+    width: 30px;
+    height: 30px;
+  }
+
+  .avis-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .avis-text strong {
+    font-size: 14px;
+  }
+
+  .avis-text span {
+    font-size: 13px;
+    color: var(--color-text-clar);
+  }
+
+  .avis-cos--mitjana .avis-text span {
+    font-size: 12px;
+  }
+
+  .avis-cos--petita .avis-text {
+    gap: 1px;
+  }
+
+  .avis-cos--petita .avis-text strong {
+    font-size: 13px;
+  }
+
+  .avis-cos--petita .avis-text span {
+    font-size: 12px;
+  }
+
+  @media (max-width: 700px) {
+    .avis-flotant--esquerra {
+      left: -6px !important;
+    }
+
+    .avis-flotant--dreta {
+      right: -6px !important;
+    }
+  }
+</style>
