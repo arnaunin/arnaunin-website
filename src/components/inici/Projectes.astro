@@ -45,9 +45,9 @@ const captures: Record<string, ImageMetadata> = { barca, forum };
               <p class="categoria">{projecte.categoria}</p>
               <h3 class="nom">{projecte.nom}</h3>
               <p class="text">{projecte.text}</p>
-              <a href={projecte.url} class="enllac">
+              <a href={projecte.url} class="enllac" target="_blank" rel="noopener">
                 {p.visita}
-                <span class="visualment-amagat">: {projecte.nom}</span>
+                <span class="visualment-amagat">: {projecte.nom} {t.comu.obreNovaFinestra}</span>
                 <span aria-hidden="true">&nbsp;→</span>
               </a>
             </div>
