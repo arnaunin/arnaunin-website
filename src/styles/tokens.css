@@ -1,0 +1,83 @@
+/*
+ * Tokens del disseny (vegeu disseny/Estils.html).
+ * Tots els colors, tipografies, radis i ombres de la web surten d'aquí.
+ * Cap altre fitxer no hauria de tenir colors escrits directament.
+ */
+:root {
+  /* ---- Paleta ---- */
+  --color-mariner: #1b2a33;          /* Fons principal fosc, botons foscos */
+  --color-mariner-profund: #142029;  /* Seccions alternes, peu, targetes fosques */
+  --color-linia-fosca: #2c3e49;      /* Vores sobre fons fosc */
+  --color-pissarra: #4a5e6a;         /* Vores de botons secundaris i camps */
+  --color-sorra: #d9b38c;            /* Accent: botó principal, destacats sobre fosc */
+  --color-sorra-clara: #ebcdaa;      /* Enllaços en passar-hi el ratolí */
+  --color-sorra-llum: #fff1de;       /* Lluentor de la marca sobre fosc */
+  --color-torrat: #8a5a2e;           /* Accent sobre fons clar */
+  --color-crema: #f6f3ee;            /* Fons de les seccions clares */
+  --color-linia-clara: #e2dbcf;      /* Vores i separadors sobre crema */
+  --color-linia-suau: #eee8de;       /* Separadors dins de targetes clares */
+  --color-tinta: #1c1b19;            /* Títols sobre fons clar */
+  --color-text-clar: #4a4640;        /* Paràgrafs sobre fons clar */
+  --color-text-suau: #5e5a54;        /* Text secundari sobre fons clar */
+  --color-paper: #f3eee6;            /* Títols sobre fons fosc */
+  --color-text-fosc: #d8d2c7;        /* Paràgrafs sobre fons fosc */
+  --color-text-fosc-suau: #b9b2a6;   /* Text secundari sobre fons fosc */
+  --color-blanc: #ffffff;
+
+  /* Colors de les maquetes il·lustratives (navegador, pla de sala) */
+  --color-maqueta-barra: #e8e2d8;
+  --color-maqueta-gris: #c9bfb0;
+  --color-maqueta-linia: #d6cec1;
+  --color-maqueta-captura: #24353f;
+  --color-maqueta-lliure: #6f8290;
+
+  /* Transparències (sorra i ombres) */
+  --color-sorra-halo: rgb(217 179 140 / 0.55);
+  --color-sorra-halo-0: rgb(217 179 140 / 0);
+  --color-sorra-llum-22: rgb(217 179 140 / 0.22);
+  --color-sorra-llum-20: rgb(217 179 140 / 0.2);
+  --color-vel-fosc: rgb(20 32 41 / 0.7);
+
+  /* ---- Tipografies ---- */
+  --font-titol: 'Fraunces Variable', Georgia, serif;   /* Títols i frases destacades */
+  --font-text: 'Figtree Variable', system-ui, sans-serif; /* Text, menús, botons */
+  --font-marca: 'Syne', 'Figtree Variable', sans-serif; /* Només per al nom de La Suite */
+
+  --mida-eyebrow: 13px;
+  --mida-cos: 16px;
+  --mida-entradeta: 1.15rem;
+
+  /* ---- Formes ---- */
+  --radi-pindola: 999px;
+  --radi-camp: 10px;
+  --radi-element: 12px;
+  --radi-avis: 14px;
+  --radi-targeta: 16px;
+  --radi-panell-petit: 20px;
+  --radi-panell: 22px;
+  --radi-caixa: 24px;
+  --radi-panell-gran: 28px;
+
+  /* ---- Ombres (suaus, tenyides de mariner) ---- */
+  --ombra-targeta: 0 22px 44px rgb(27 42 51 / 0.14);
+  --ombra-fitxa: 0 22px 44px rgb(27 42 51 / 0.12);
+  --ombra-avis-clar: 0 18px 40px rgb(27 42 51 / 0.12);
+  --ombra-panell: 0 40px 80px rgb(27 42 51 / 0.25);
+  --ombra-fosca: 0 30px 60px rgb(0 0 0 / 0.35);
+  --ombra-avis: 0 18px 40px rgb(0 0 0 / 0.35);
+
+  /* ---- Espais ---- */
+  --amplada-maxima: 1200px;
+  --marge-lateral: 24px;
+  --seccio: 110px;
+
+  /* ---- Moviment ---- */
+  --corba-entrada: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --corba-avis: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 700px) {
+  :root {
+    --seccio: 72px;
+  }
+}
