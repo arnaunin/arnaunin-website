@@ -27,6 +27,14 @@ body {
   color: var(--color-paper);
   background: var(--color-mariner);
   overflow-x: hidden;
+  /* El peu queda sempre al fons, encara que la pàgina sigui curta. */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 img,

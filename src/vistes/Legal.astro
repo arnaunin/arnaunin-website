@@ -1,0 +1,119 @@
+---
+/** Pàgines legals (avís legal, privacitat i galetes), comunes als tres idiomes. */
+import Base from '../layouts/Base.astro';
+import Onades from '../components/comu/Onades.astro';
+import { idiomaActual, omple, textos } from '../i18n';
+
+interface Props {
+  pagina: 'avisLegal' | 'privacitat' | 'galetes';
+}
+
+const { pagina } = Astro.props;
+const idioma = idiomaActual(Astro.currentLocale);
+const t = textos(idioma);
+const contingut = t.legal[pagina];
+const meta = t.meta[pagina];
+
+// Dades encara pendents (vegeu el bloc `provisional` dels fitxers de textos).
+const valors = {
+  titular: t.provisional.titular,
+  nif: t.provisional.nif,
+  domicili: t.provisional.domicili,
+  conservacio: t.provisional.conservacio,
+};
+---
+
+<Base idioma={idioma} pagina={pagina} titol={meta.titol} descripcio={meta.descripcio}>
+  <section class="fosc capcalera-legal">
+    <Onades amplada={620} alcada={240} opacitat={0.12} linies={2} posicio="right: -60px; bottom: -60px" />
+    <div class="contenidor capcalera-cos">
+      <div class="ratlla-accent" aria-hidden="true"></div>
+      <h1 class="titol entra">{contingut.titol}</h1>
+      <p class="actualitzat entra d1">{t.legal.actualitzat}</p>
+    </div>
+  </section>
+
+  <section class="clar">
+    <div class="contenidor seccio">
+      <div class="prosa">
+        <p class="pendent">{t.provisional.legal}</p>
+        {
+          contingut.seccions.map((s) => (
+            <section class="apartat">
+              <h2>{s.titol}</h2>
+              {s.paragrafsHtml.map((p) => (
+                <p set:html={omple(p, valors)} />
+              ))}
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .capcalera-legal {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .capcalera-cos {
+    position: relative;
+    padding-top: 72px;
+    padding-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .actualitzat {
+    font-size: 14px;
+    color: var(--color-text-fosc-suau);
+  }
+
+  .prosa {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .pendent {
+    border: 1.5px dashed var(--color-maqueta-gris);
+    border-radius: var(--radi-targeta);
+    padding: 16px 20px;
+    color: var(--color-text-suau);
+  }
+
+  .apartat {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  h2 {
+    font-family: var(--font-titol);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.7;
+    color: var(--color-text-clar);
+  }
+
+  .prosa :global(a) {
+    color: var(--color-mariner);
+    font-weight: 600;
+  }
+
+  .prosa :global(a:hover) {
+    color: var(--color-torrat);
+  }
+
+  .prosa :global(strong) {
+    color: var(--color-tinta);
+  }
+</style>
