@@ -22,7 +22,9 @@ const esSuite = pagina === 'suite';
 // A l'inici, els enllaços són àncores; a les altres pàgines porten a l'inici.
 const aInici = (ancora: string) => (esInici ? `#${ancora}` : ruta('inici', idioma, ancora));
 
+// Fora de l'inici, el primer enllaç torna a l'inici.
 const enllacos = [
+  ...(esInici ? [] : [{ text: t.comu.nav.inici, href: ruta('inici', idioma), actual: false }]),
   { text: t.comu.nav.restaurants, href: ruta('suite', idioma), actual: esSuite },
   { text: t.comu.nav.projectes, href: aInici('projectes'), actual: false },
   { text: t.comu.nav.sobreMi, href: aInici('sobre-mi'), actual: false },

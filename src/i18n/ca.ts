@@ -51,6 +51,7 @@ export const ca = {
     obreMenu: 'Obre el menú',
     tancaMenu: 'Tanca el menú',
     nav: {
+      inici: 'Inici',
       restaurants: 'Restaurants',
       projectes: 'Projectes',
       sobreMi: 'Sobre mi',

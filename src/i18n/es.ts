@@ -46,6 +46,7 @@ export const es: Traduccions = {
     obreMenu: 'Abrir el menú',
     tancaMenu: 'Cerrar el menú',
     nav: {
+      inici: 'Inicio',
       restaurants: 'Restaurantes',
       projectes: 'Proyectos',
       sobreMi: 'Sobre mí',
