@@ -1,0 +1,25 @@
+---
+/** Pàgina de La Suite (sistema per a restaurants), comuna als tres idiomes. */
+import Base from '../layouts/Base.astro';
+import ComFunciona from '../components/suite/ComFunciona.astro';
+import Crida from '../components/suite/Crida.astro';
+import Hero from '../components/suite/Hero.astro';
+import PerDins from '../components/suite/PerDins.astro';
+import PerQue from '../components/suite/PerQue.astro';
+import Plans from '../components/suite/Plans.astro';
+import QueCanvia from '../components/suite/QueCanvia.astro';
+import { idiomaActual, textos } from '../i18n';
+
+const idioma = idiomaActual(Astro.currentLocale);
+const t = textos(idioma);
+---
+
+<Base idioma={idioma} pagina="suite" titol={t.meta.suite.titol} descripcio={t.meta.suite.descripcio} crida="demanaDemo">
+  <Hero idioma={idioma} />
+  <PerQue idioma={idioma} />
+  <QueCanvia idioma={idioma} />
+  <PerDins idioma={idioma} />
+  <ComFunciona idioma={idioma} />
+  <Plans idioma={idioma} />
+  <Crida idioma={idioma} />
+</Base>

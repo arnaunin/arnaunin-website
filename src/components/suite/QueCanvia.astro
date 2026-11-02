@@ -1,0 +1,93 @@
+---
+import Icona from '../comu/Icona.astro';
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma).suite.queCanvia;
+---
+
+<section class="clar vora-superior">
+  <div class="contenidor seccio que-canvia">
+    <div class="capcalera-seccio revela">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h2 class="titol">{t.titol}</h2>
+    </div>
+    <ul class="fitxes" role="list">
+      {
+        t.fitxes.map((fitxa) => (
+          <li class="fitxa revela">
+            <Icona nom={fitxa.icona} mida={28} />
+            <h3>{fitxa.titol}</h3>
+            <p>{fitxa.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .que-canvia {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .capcalera-seccio {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .fitxes {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 24px;
+  }
+
+  .fitxa {
+    background: var(--color-blanc);
+    border: 1px solid var(--color-linia-clara);
+    border-radius: var(--radi-targeta);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--color-torrat);
+    transition:
+      transform 0.35s var(--corba-entrada),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .fitxa:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--ombra-fitxa);
+    border-color: var(--color-sorra);
+  }
+
+  .fitxa :global(svg) {
+    transition: transform 0.35s ease;
+  }
+
+  .fitxa:hover :global(svg) {
+    transform: rotate(-8deg) scale(1.12);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-tinta);
+  }
+
+  p {
+    line-height: 1.6;
+    color: var(--color-text-clar);
+  }
+</style>

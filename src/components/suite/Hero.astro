@@ -1,0 +1,185 @@
+---
+/** Hero de La Suite, amb l'espai reservat per al widget de reserves. */
+import Icona from '../comu/Icona.astro';
+import Llum from '../comu/Llum.astro';
+import Marca from '../comu/Marca.astro';
+import Onades from '../comu/Onades.astro';
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma).suite.hero;
+---
+
+<section class="hero fosc">
+  <Llum mida={480} posicio="right: 10%; top: 8%" />
+  <Onades amplada={620} alcada={260} opacitat={0.14} gruix={0.6} posicio="left: -40px; bottom: -20px" />
+
+  <div class="contenidor hero-cos">
+    <div class="hero-text">
+      <div class="marca-fila entra">
+        <Marca fons="fosc" />
+        <span class="separador" aria-hidden="true"></span>
+        <p class="subtitol">{t.subtitol}</p>
+      </div>
+      <h1 class="titol-hero entra d1" set:html={t.titolHtml} />
+      <p class="entradeta entra d2">{t.entradeta}</p>
+      <div class="grup-botons entra d3">
+        <a href="#contacte" class="boto boto--principal">{t.botoPrincipal}</a>
+        <a href="#per-que" class="boto boto--secundari">{t.botoSecundari}</a>
+      </div>
+    </div>
+
+    <div class="widget-columna entra d4">
+      <!--
+        Contenidor del widget de reserves. Quan el widget (un web component) estigui
+        llest, substitueix el contingut d'aquest div per l'etiqueta del widget i el
+        seu <script>. Mentrestant, mostra l'aspecte d'«espai reservat» del disseny.
+      -->
+      <div id="widget-reserves" data-placeholder="widget-reserves" class="widget-reservat">
+        <svg class="vora-svg" aria-hidden="true" focusable="false" width="100%" height="100%">
+          <rect class="vora" x="1" y="1" width="99.6%" height="99.6%" rx="22" ry="22" fill="none" stroke-width="1.5" stroke-dasharray="10 10" opacity=".7"></rect>
+        </svg>
+        <Icona nom="calendari" mida={40} gruix={1.5} class="icona-widget" />
+        <p class="widget-etiqueta">{t.widget.etiqueta}</p>
+        <p class="widget-titol">{t.widget.titol}</p>
+        <p class="widget-text">{t.widget.text}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-cos {
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero-text {
+    flex: 1 1 480px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .marca-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .separador {
+    width: 48px;
+    height: 1px;
+    background: var(--color-pissarra);
+  }
+
+  .subtitol {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-paper);
+  }
+
+  .titol-hero {
+    font-family: var(--font-titol);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .titol-hero :global(em) {
+    color: var(--color-sorra);
+  }
+
+  .entradeta {
+    max-width: 560px;
+    font-size: var(--mida-entradeta);
+    line-height: 1.65;
+    color: var(--color-text-fosc);
+  }
+
+  .widget-columna {
+    flex: 1 1 420px;
+    min-width: 0;
+    max-width: 480px;
+  }
+
+  .widget-reservat {
+    position: relative;
+    min-height: 520px;
+    border-radius: var(--radi-panell);
+    background: var(--color-vel-fosc);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .vora-svg {
+    position: absolute;
+    inset: 0;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .vora {
+    stroke: var(--color-sorra);
+    animation: vora 2.5s linear infinite;
+  }
+
+  @keyframes vora {
+    to {
+      stroke-dashoffset: -40;
+    }
+  }
+
+  .widget-reservat :global(.icona-widget) {
+    color: var(--color-sorra);
+  }
+
+  .widget-etiqueta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--color-sorra);
+  }
+
+  .widget-titol {
+    font-family: var(--font-titol);
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .widget-text {
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-fosc-suau);
+  }
+
+  @media (max-width: 700px) {
+    .hero-cos {
+      padding-top: 56px;
+      padding-bottom: 88px;
+    }
+  }
+</style>

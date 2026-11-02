@@ -1,0 +1,58 @@
+---
+/** Plans i preus: de moment, un espai reservat (text provisional). */
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma);
+const p = t.suite.plans;
+---
+
+<section class="clar vora-superior">
+  <div class="contenidor plans revela">
+    <div class="capcalera-seccio">
+      <p class="eyebrow">{p.eyebrow}</p>
+      <h2 class="titol">{p.titol}</h2>
+    </div>
+    <div class="pendent">{t.provisional.plans}</div>
+  </div>
+</section>
+
+<style>
+  .plans {
+    padding-top: 90px;
+    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .capcalera-seccio {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .pendent {
+    box-sizing: content-box;
+    min-height: 220px;
+    border: 1.5px dashed var(--color-maqueta-gris);
+    border-radius: var(--radi-panell-petit);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+    color: var(--color-text-suau);
+  }
+
+  @media (max-width: 700px) {
+    .plans {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+  }
+</style>

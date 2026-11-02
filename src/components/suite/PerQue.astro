@@ -1,0 +1,100 @@
+---
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const t = textos(Astro.props.idioma).suite.perQue;
+---
+
+<section id="per-que" class="clar">
+  <div class="contenidor seccio per-que">
+    <div class="historia revela">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h2 class="titol titol--gran equilibrat">{t.titol}</h2>
+      {t.paragrafs.map((p) => <p class="paragraf">{p}</p>)}
+    </div>
+
+    <div class="mals revela">
+      <h3 class="et-sona">{t.etSona}</h3>
+      <ul role="list">
+        {t.mals.map((mal) => <li class="mal">{mal}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .per-que {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 64px;
+    align-items: flex-start;
+  }
+
+  .historia {
+    flex: 1 1 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .titol--gran {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    line-height: 1.08;
+  }
+
+  .paragraf {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text-clar);
+  }
+
+  /* Com al disseny, la base de 400 px és la del contingut (sense el padding). */
+  .mals {
+    box-sizing: content-box;
+    flex: 1 1 400px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-blanc);
+    border: 1px solid var(--color-linia-clara);
+    border-radius: var(--radi-panell-petit);
+    padding: 12px 28px;
+  }
+
+  .et-sona {
+    margin: 18px 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--color-torrat);
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .mal {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-linia-suau);
+    font-size: 1.05rem;
+    line-height: 1.45;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .mal:hover {
+    transform: translateX(6px);
+  }
+
+  .mal:last-child {
+    padding-bottom: 22px;
+    border-bottom: 0;
+  }
+</style>
