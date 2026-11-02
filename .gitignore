@@ -1,0 +1,15 @@
+# dependències i compilació
+node_modules/
+dist/
+.astro/
+
+# Netlify
+.netlify/
+
+# entorn
+.env
+.env.*
+
+# sistema
+.DS_Store
+*.log
