@@ -27,5 +27,14 @@ export const CORREU = 'ninbsnss92@gmail.com';
 export const POBLACIO = 'Calafell';
 export const COMARCA = 'Baix Penedès';
 
+/**
+ * Pàgines legals (avís legal, privacitat i galetes) i formulari de contacte.
+ * Estan AMAGATS fins que tinguem les dades del titular (nom, NIF i adreça).
+ * Amb `false`: no es generen les pàgines legals, el peu no hi enllaça i la portada
+ * no mostra el formulari (el contacte queda per WhatsApp, telèfon i correu).
+ * Per tornar-ho a mostrar, posa `true`.
+ */
+export const MOSTRA_PAGINES_LEGALS = false;
+
 /** Nom del formulari a Netlify Forms (és el que veuràs al tauler de Netlify). */
 export const NOM_FORMULARI = 'contacte';

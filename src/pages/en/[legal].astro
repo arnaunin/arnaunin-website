@@ -1,0 +1,14 @@
+---
+/** Pàgines legals en en. Només es generen si MOSTRA_PAGINES_LEGALS és true. */
+import Legal from '../../vistes/Legal.astro';
+import { MOSTRA_PAGINES_LEGALS } from '../../config/lloc';
+import { camisLegals, type PaginaLegal } from '../../i18n/rutes';
+
+export function getStaticPaths() {
+  return camisLegals('en', MOSTRA_PAGINES_LEGALS);
+}
+
+const { pagina } = Astro.props as { pagina: PaginaLegal };
+---
+
+<Legal pagina={pagina} />

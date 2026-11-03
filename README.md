@@ -64,7 +64,7 @@ disseny/        Disseny aprovat (referència)
 ### Afegir o reanomenar una pàgina
 
 1. Afegeix-la al mapa de [`src/i18n/rutes.ts`](src/i18n/rutes.ts) amb l'adreça de cada idioma.
-2. Crea els tres fitxers a `src/pages/` (`/`, `/es/`, `/en/`).
+2. Crea els tres fitxers a `src/pages/` (`/`, `/es/`, `/en/`). Les pàgines legals són l’excepció: surten de `[legal].astro`, una ruta dinàmica per idioma.
 
 El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
 
@@ -82,6 +82,8 @@ El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
   ```
 
 ## Formulari de contacte (Netlify Forms)
+
+> **Ara mateix està amagat**, igual que les pàgines legals, fins que hi hagi les dades del titular. Per tornar-ho a mostrar tot, posa `MOSTRA_PAGINES_LEGALS = true` a [`src/config/lloc.ts`](src/config/lloc.ts). Mentrestant, el contacte és per WhatsApp, telèfon i correu.
 
 El formulari de la portada ja està preparat per a Netlify Forms: nom, correu, missatge, casella de privacitat obligatòria i un camp antispam ocult (`bot-field`). Amb JavaScript es valida de manera accessible i s'envia sense sortir de la pàgina; sense JavaScript, funciona igual i Netlify mostra la seva pàgina de confirmació.
 
@@ -106,7 +108,7 @@ Quan canviï el domini (per exemple, a `arnaunin.cat`), canvia només `DOMINI` a
 ## Pendent
 
 - **Captures reals del sistema:** de moment, la pàgina de restaurants mostra maquetes marcades com a «Vista prèvia», «Exemple visual» i «Dades d’exemple».
-- **Textos legals:** són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
+- **Textos legals (amagats):** les pàgines d’avís legal, privacitat i galetes i el formulari no es publiquen mentre `MOSTRA_PAGINES_LEGALS` sigui `false`. Són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
 - **Traduccions al castellà i a l'anglès:** primera versió, pendent de revisió per una persona.
 - Nom definitiu de La Suite i compra del domini.
 

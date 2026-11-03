@@ -2,7 +2,7 @@
 import Icona from '../comu/Icona.astro';
 import Onades from '../comu/Onades.astro';
 import FormulariContacte from './FormulariContacte.astro';
-import { CORREU, TELEFON, WHATSAPP } from '../../config/lloc';
+import { CORREU, MOSTRA_PAGINES_LEGALS, TELEFON, WHATSAPP } from '../../config/lloc';
 import { textos, type Idioma } from '../../i18n';
 
 interface Props {
@@ -29,7 +29,8 @@ const t = textos(idioma).inici.contacte;
         <a href={`mailto:${CORREU}`}>{t.correu}</a>
       </div>
     </div>
-    <FormulariContacte idioma={idioma} />
+    {/* El formulari demana acceptar la privacitat: només es mostra si hi ha pàgines legals. */}
+    {MOSTRA_PAGINES_LEGALS && <FormulariContacte idioma={idioma} />}
   </div>
 </section>
 
