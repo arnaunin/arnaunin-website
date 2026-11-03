@@ -10,7 +10,6 @@ import type { Traduccions } from './ca';
 export const en: Traduccions = {
   provisional: {
     estudis: '[Your education]',
-    plans: '[Plans and pricing: offer still to be defined]',
     legal: '[Base text pending review]',
     titular: '[Full name]',
     nif: '[Tax ID pending]',
@@ -302,9 +301,25 @@ export const en: Traduccions = {
         },
       ],
     },
-    plans: {
-      eyebrow: 'Plans',
-      titol: 'Pay only for what you use.',
+    moduls: {
+      eyebrow: 'Modules',
+      titol: 'Start with bookings and add only what you need.',
+      llista: [
+        { etiqueta: 'The core', titol: 'Bookings and floor plan', text: 'Website and phone bookings in one place, and the whole dining room live on the iPad.' },
+        { etiqueta: '', titol: 'Menu on your website', text: 'Your menu on your website, easy to read on a phone.' },
+        { etiqueta: 'Extra', titol: 'Takeaway shop', text: 'Takeaway orders from your website: one more sales channel, with no platform fees.' },
+        { etiqueta: 'Made to measure', titol: 'New SEO-optimised website', text: 'If you don’t have one or want a new one, a made-to-measure website, fast and ready for local SEO.' },
+      ],
+      properament: {
+        etiqueta: 'Coming soon',
+        llista: [
+          { titol: 'End-of-service checklist', text: 'A list of what the team needs to do before closing, so nothing is left undone.' },
+          { titol: 'Staff clock-in', text: 'A record of the team’s hours.' },
+          { titol: 'Orders during service', text: 'Paperless table orders.' },
+        ],
+      },
+      condicions: 'The first 3 restaurants: launch terms and setup included. I’ll tell you the terms in the demo, no strings attached.',
+      boto: 'Book a 15-minute demo',
     },
     crida: {
       titol: 'Want to see how it would work in your restaurant?',

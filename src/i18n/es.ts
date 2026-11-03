@@ -10,7 +10,6 @@ import type { Traduccions } from './ca';
 export const es: Traduccions = {
   provisional: {
     estudis: '[Tus estudios]',
-    plans: '[Planes y precios: pendiente de definir la oferta]',
     legal: '[Texto base pendiente de revisión]',
     titular: '[Nombre y apellidos completos]',
     nif: '[NIF pendiente]',
@@ -302,9 +301,25 @@ export const es: Traduccions = {
         },
       ],
     },
-    plans: {
-      eyebrow: 'Planes',
-      titol: 'Paga solo por lo que usas.',
+    moduls: {
+      eyebrow: 'Módulos',
+      titol: 'Empieza por las reservas y añade solo lo que necesites.',
+      llista: [
+        { etiqueta: 'El núcleo', titol: 'Reservas y plano de sala', text: 'Las reservas de la web y del teléfono en un solo lugar, y toda la sala en directo en el iPad.' },
+        { etiqueta: '', titol: 'Carta en la web', text: 'Tu carta en tu web, fácil de leer desde el móvil.' },
+        { etiqueta: 'Extra', titol: 'Tienda para llevar', text: 'Pedidos para llevar desde tu web: un canal de venta más, sin comisiones de plataformas.' },
+        { etiqueta: 'A medida', titol: 'Web nueva optimizada para SEO', text: 'Si no tienes o quieres renovarla, una web nueva hecha a medida, rápida y preparada para el SEO local.' },
+      ],
+      properament: {
+        etiqueta: 'Próximamente',
+        llista: [
+          { titol: 'Cierre de servicio', text: 'Una lista de lo que el equipo tiene que hacer antes de cerrar, para que no quede nada por hacer.' },
+          { titol: 'Fichaje del personal', text: 'Registro de horas del equipo.' },
+          { titol: 'Comandas durante el servicio', text: 'Comandas de sala sin papeles.' },
+        ],
+      },
+      condicions: 'Los 3 primeros restaurantes: condiciones de lanzamiento y configuración incluida. Te cuento las condiciones en la demo, sin compromiso.',
+      boto: 'Pide una demo de 15 minutos',
     },
     crida: {
       titol: '¿Quieres ver cómo funcionaría en tu restaurante?',

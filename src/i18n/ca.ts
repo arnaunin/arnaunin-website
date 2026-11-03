@@ -15,7 +15,6 @@ export const ca = {
    */
   provisional: {
     estudis: '[Els teus estudis]',
-    plans: '[Plans i preus: pendent de definir l’oferta]',
     legal: '[Text base pendent de revisió]',
     titular: '[Nom i cognoms complets]',
     nif: '[NIF pendent]',
@@ -307,9 +306,25 @@ export const ca = {
         },
       ],
     },
-    plans: {
-      eyebrow: 'Plans',
-      titol: 'Paga només pel que fas servir.',
+    moduls: {
+      eyebrow: 'Mòduls',
+      titol: 'Comença per les reserves i afegeix només el que necessitis.',
+      llista: [
+        { etiqueta: 'El nucli', titol: 'Reserves i pla de sala', text: 'Les reserves de la web i del telèfon en un sol lloc, i tota la sala en directe a l’iPad.' },
+        { etiqueta: '', titol: 'Carta a la web', text: 'La teva carta a la teva web, fàcil de llegir des del mòbil.' },
+        { etiqueta: 'Extra', titol: 'Botiga per emportar', text: 'Comandes per emportar des de la teva web: un canal de venda més, sense comissions de plataformes.' },
+        { etiqueta: 'A mida', titol: 'Web nova optimitzada per SEO', text: 'Si no en tens o la vols renovar, una web nova feta a mida, ràpida i preparada per al SEO local.' },
+      ],
+      properament: {
+        etiqueta: 'Properament',
+        llista: [
+          { titol: 'Tancament de servei', text: 'Una llista del que l’equip ha de fer abans de tancar, perquè no es quedi res per fer.' },
+          { titol: 'Fitxatge del personal', text: 'Registre d’hores de l’equip.' },
+          { titol: 'Comandes durant el servei', text: 'Comandes de sala sense papers.' },
+        ],
+      },
+      condicions: 'Els 3 primers restaurants: condicions de llançament i configuració inclosa. Et dic les condicions a la demo, sense compromís.',
+      boto: 'Demana una demo de 15 minuts',
     },
     crida: {
       titol: 'Vols veure com funcionaria al teu restaurant?',
