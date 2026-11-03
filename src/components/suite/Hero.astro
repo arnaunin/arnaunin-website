@@ -1,5 +1,6 @@
 ---
-/** Hero de La Suite, amb l'espai reservat per al widget de reserves. */
+/** Hero de La Suite, amb una vista prèvia estàtica del formulari de reserves. */
+import EtiquetaExemple from '../comu/EtiquetaExemple.astro';
 import Icona from '../comu/Icona.astro';
 import Llum from '../comu/Llum.astro';
 import Marca from '../comu/Marca.astro';
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const t = textos(Astro.props.idioma).suite.hero;
+const v = t.vistaPrevia;
 ---
 
 <section class="hero fosc">
@@ -34,18 +36,44 @@ const t = textos(Astro.props.idioma).suite.hero;
 
     <div class="widget-columna entra d4">
       <!--
-        Contenidor del widget de reserves. Quan el widget (un web component) estigui
-        llest, substitueix el contingut d'aquest div per l'etiqueta del widget i el
-        seu <script>. Mentrestant, mostra l'aspecte d'«espai reservat» del disseny.
+        Vista prèvia ESTÀTICA del formulari de reserves (no és interactiva).
+        Quan el widget real (un web component) estigui llest, es pot substituir
+        el contingut d'aquest div per l'etiqueta del widget i el seu <script>.
       -->
-      <div id="widget-reserves" data-placeholder="widget-reserves" class="widget-reservat">
-        <svg class="vora-svg" aria-hidden="true" focusable="false" width="100%" height="100%">
-          <rect class="vora" x="1" y="1" width="99.6%" height="99.6%" rx="22" ry="22" fill="none" stroke-width="1.5" stroke-dasharray="10 10" opacity=".7"></rect>
-        </svg>
-        <Icona nom="calendari" mida={40} gruix={1.5} class="icona-widget" />
-        <p class="widget-etiqueta">{t.widget.etiqueta}</p>
-        <p class="widget-titol">{t.widget.titol}</p>
-        <p class="widget-text">{t.widget.text}</p>
+      <div id="widget-reserves" class="vista-previa" role="img" aria-label={`${v.etiqueta}: ${v.descripcio}`}>
+        <div class="vp-cap" aria-hidden="true">
+          <EtiquetaExemple text={v.etiqueta} fons="clar" />
+          <p class="vp-restaurant">{v.restaurant}</p>
+          <p class="vp-titol">{v.titol}</p>
+        </div>
+        <div class="vp-cos" aria-hidden="true">
+          <div class="vp-fila">
+            <div class="vp-camp">
+              <span class="vp-etiqueta">{v.dia}</span>
+              <span class="vp-valor"><Icona nom="calendari" mida={16} />{v.diaValor}</span>
+            </div>
+            <div class="vp-camp">
+              <span class="vp-etiqueta">{v.persones}</span>
+              <span class="vp-valor"><Icona nom="persones" mida={16} />{v.personesValor}</span>
+            </div>
+          </div>
+          <div class="vp-camp">
+            <span class="vp-etiqueta">{v.hora}</span>
+            <span class="vp-hores">
+              {v.hores.map((hora) => <span class:list={['vp-hora', { triada: hora === v.horaTriada }]}>{hora}</span>)}
+            </span>
+          </div>
+          <div class="vp-camp">
+            <span class="vp-etiqueta">{v.nom}</span>
+            <span class="vp-valor">{v.nomValor}</span>
+          </div>
+          <div class="vp-camp">
+            <span class="vp-etiqueta">{v.correu}</span>
+            <span class="vp-valor">{v.correuValor}</span>
+          </div>
+          <span class="vp-boto">{v.boto}</span>
+          <p class="vp-nota"><Icona nom="correu" mida={14} />{v.nota}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -119,61 +147,140 @@ const t = textos(Astro.props.idioma).suite.hero;
     max-width: 480px;
   }
 
-  .widget-reservat {
+  /* Vista prèvia estàtica: res no hi sembla clicable. */
+  .vista-previa {
     position: relative;
-    min-height: 520px;
     border-radius: var(--radi-panell);
-    background: var(--color-vel-fosc);
+    background: var(--color-crema);
+    color: var(--color-tinta);
+    box-shadow: var(--ombra-fosca);
+    padding: 28px;
     display: flex;
     flex-direction: column;
+    gap: 22px;
+    cursor: default;
+    user-select: none;
+  }
+
+  .vista-previa * {
+    cursor: default;
+  }
+
+  .vp-cap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .vp-cap :global(.etiqueta-exemple) {
+    margin-bottom: 8px;
+  }
+
+  .vp-restaurant {
+    font-size: 13px;
+    color: var(--color-text-suau);
+  }
+
+  .vp-titol {
+    font-family: var(--font-titol);
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+
+  .vp-cos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .vp-fila {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .vp-camp {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .vp-etiqueta {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-suau);
+  }
+
+  .vp-valor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--color-linia-clara);
+    border-radius: var(--radi-camp);
+    background: var(--color-blanc);
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .vp-valor :global(svg) {
+    flex: none;
+    color: var(--color-torrat);
+  }
+
+  .vp-hores {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .vp-hora {
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    padding: 32px;
+    min-height: 38px;
+    border: 1px solid var(--color-linia-clara);
+    border-radius: var(--radi-camp);
+    background: var(--color-blanc);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .vp-hora.triada {
+    border-color: var(--color-mariner);
+    background: var(--color-mariner);
+    color: var(--color-paper);
+  }
+
+  .vp-boto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    margin-top: 4px;
+    border-radius: var(--radi-pindola);
+    background: var(--color-mariner);
+    color: var(--color-paper);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .vp-nota {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--color-text-suau);
     text-align: center;
   }
 
-  .vora-svg {
-    position: absolute;
-    inset: 0;
-    max-width: none;
-    pointer-events: none;
-  }
-
-  .vora {
-    stroke: var(--color-sorra);
-    animation: vora 2.5s linear infinite;
-  }
-
-  @keyframes vora {
-    to {
-      stroke-dashoffset: -40;
-    }
-  }
-
-  .widget-reservat :global(.icona-widget) {
-    color: var(--color-sorra);
-  }
-
-  .widget-etiqueta {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    color: var(--color-sorra);
-  }
-
-  .widget-titol {
-    font-family: var(--font-titol);
-    font-size: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .widget-text {
-    max-width: 300px;
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--color-text-fosc-suau);
+  .vp-nota :global(svg) {
+    flex: none;
   }
 
   @media (max-width: 700px) {

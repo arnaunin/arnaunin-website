@@ -70,7 +70,7 @@ El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
 
 ## Elements preparats per més endavant
 
-- **Widget de reserves:** a la pàgina de La Suite hi ha `<div id="widget-reserves">` amb l'aspecte d'«espai reservat» ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)). Quan el widget estigui llest, se substitueix el contingut del `div` per l'etiqueta del web component i el seu `<script>`.
+- **Widget de reserves:** a la pàgina de La Suite hi ha `<div id="widget-reserves">` amb una **vista prèvia estàtica** del formulari, marcada com a «Vista prèvia» ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)). Quan el widget real estigui llest, se substitueix el contingut del `div` per l’etiqueta del web component i el seu `<script>`.
 - **Imatges per compartir:** són PNG estàtics. Si canvia el text del hero o el domini, torna-les a generar:
 
   ```bash
