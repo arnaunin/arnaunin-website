@@ -114,6 +114,7 @@ export const en: Traduccions = {
       eyebrow: 'Other projects',
       titol: 'Work done, close to home.',
       visita: 'Visit the website',
+      perPublicar: 'New website · going live soon',
       llista: [
         {
           id: 'barca',
@@ -122,6 +123,8 @@ export const en: Traduccions = {
           text: 'Website, takeaway shop and online bookings for a beach restaurant.',
           alt: 'Home page of the La Barca de Ca l’Ardet website',
           url: 'https://labarcadecalardet.com',
+          /** La web nova encara no és al domini: es mostra «es publica aviat» en lloc de l’enllaç. */
+          publicada: false,
         },
         {
           id: 'forum',
@@ -130,6 +133,7 @@ export const en: Traduccions = {
           text: 'Website for the association that brings together more than 180 shops, restaurants and services: member directory, campaigns, news and a members’ area.',
           alt: 'Home page of the Fòrum Calafell website',
           url: 'https://forumcalafell.com',
+          publicada: true,
         },
       ],
     },

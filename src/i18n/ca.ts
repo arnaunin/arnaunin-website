@@ -119,6 +119,7 @@ export const ca = {
       eyebrow: 'Altres projectes',
       titol: 'Feina feta, a prop de casa.',
       visita: 'Visita la web',
+      perPublicar: 'Web nova · es publica aviat',
       llista: [
         {
           id: 'barca',
@@ -127,6 +128,8 @@ export const ca = {
           text: 'Web, botiga per emportar i reserves en línia per a un restaurant de platja.',
           alt: 'Pàgina d’inici de la web de La Barca de Ca l’Ardet',
           url: 'https://labarcadecalardet.com',
+          /** La web nova encara no és al domini: es mostra «es publica aviat» en lloc de l’enllaç. */
+          publicada: false,
         },
         {
           id: 'forum',
@@ -135,6 +138,7 @@ export const ca = {
           text: 'Web de l’associació que reuneix més de 180 comerços, restaurants i serveis: directori d’associats, campanyes, notícies i àrea de socis.',
           alt: 'Pàgina d’inici de la web del Fòrum Calafell',
           url: 'https://forumcalafell.com',
+          publicada: true,
         },
       ],
     },
