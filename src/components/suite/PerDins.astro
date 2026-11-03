@@ -1,36 +1,12 @@
 ---
-/** El sistema per dins: maqueta del pla de sala en directe. */
-import AvisFlotant from '../comu/AvisFlotant.astro';
-import EtiquetaExemple from '../comu/EtiquetaExemple.astro';
+/** En ple servei: tres moments del servei explicats amb text (sense maquetes del sistema). */
 import { textos, type Idioma } from '../../i18n';
 
 interface Props {
   idioma: Idioma;
 }
 
-const t = textos(Astro.props.idioma);
-const s = t.suite.perDins;
-const m = s.maqueta;
-
-type Taula = {
-  num: number;
-  forma: 'rodona' | 'quadrada';
-  estat: 'asseguts' | 'reservada' | 'lliure';
-  detall?: string;
-  /** Animació de taula reservada que passa a asseguda (1 o 2). */
-  arriba?: 1 | 2;
-};
-
-const taules: Taula[] = [
-  { num: 1, forma: 'rodona', estat: 'asseguts', detall: `4 ${m.persones}` },
-  { num: 2, forma: 'quadrada', estat: 'asseguts', detall: `2 ${m.persones}` },
-  { num: 3, forma: 'quadrada', estat: 'reservada', detall: '13:30', arriba: 1 },
-  { num: 4, forma: 'rodona', estat: 'lliure' },
-  { num: 5, forma: 'quadrada', estat: 'lliure' },
-  { num: 6, forma: 'rodona', estat: 'asseguts', detall: `6 ${m.persones}` },
-  { num: 7, forma: 'quadrada', estat: 'reservada', detall: '14:00', arriba: 2 },
-  { num: 8, forma: 'quadrada', estat: 'asseguts', detall: `3 ${m.persones}` },
-];
+const s = textos(Astro.props.idioma).suite.perDins;
 ---
 
 <section class="fosc-profund per-dins">
@@ -39,51 +15,26 @@ const taules: Taula[] = [
       <p class="eyebrow">{s.eyebrow}</p>
       <h2 class="titol">{s.titol}</h2>
       <p class="paragraf">{s.text}</p>
+      <p class="demo">
+        {s.demo} <a href="#contacte">{s.enllac}&nbsp;→</a>
+      </p>
     </div>
 
-    <div class="maqueta revela" aria-hidden="true">
-      <div class="sala">
-        <div class="etiquetes">
-          <EtiquetaExemple text={m.exemple} />
-          <EtiquetaExemple text={m.dadesExemple} />
-        </div>
-        <div class="sala-capcalera">
-          <div class="sala-titol">
-            <p class="torn">{m.torn}</p>
-            <p class="ocupacio">{m.ocupacio}</p>
-          </div>
-          <p class="en-directe"><span class="punt"></span>{m.enDirecte}</p>
-        </div>
-
-        <div class="taules">
-          {
-            taules.map((taula) => (
-              <div class:list={['taula', `taula--${taula.forma}`, `taula--${taula.estat}`, taula.arriba && `arriba arriba${taula.arriba}`]}>
-                <span>{taula.num}</span>
-                {taula.detall && <span class="taula-detall">{taula.detall}</span>}
-              </div>
-            ))
-          }
-        </div>
-
-        <div class="llegenda">
-          <span><span class="mostra mostra--asseguts"></span>{m.asseguts}</span>
-          <span><span class="mostra mostra--reservada"></span>{m.reservada}</span>
-          <span><span class="mostra mostra--lliure"></span>{m.lliure}</span>
-        </div>
-      </div>
-
-      <AvisFlotant
-        titol={m.avisTitol}
-        text={m.avisText}
-        mida="petita"
-        posicio="right: -20px; top: -26px"
-        costat="dreta"
-        retard={0.4}
-        ambScroll
-        surar={false}
-      />
-    </div>
+    <ol class="moments" role="list">
+      {
+        s.moments.map((moment, i) => (
+          <li class="moment revela">
+            <span class="numero" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3>{moment.titol}</h3>
+              <p>{moment.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>
 
@@ -114,154 +65,57 @@ const taules: Taula[] = [
     color: var(--color-text-fosc);
   }
 
-  .etiquetes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  .demo {
+    padding-top: 20px;
+    border-top: 1px solid var(--color-linia-fosca);
+    line-height: 1.6;
+    color: var(--color-text-fosc-suau);
   }
 
-  .maqueta {
+  .demo a {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .moments {
     flex: 1 1 460px;
     min-width: 0;
-    position: relative;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
-  .sala {
-    cursor: default;
-    user-select: none;
+  .moment {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
     background: var(--color-mariner);
     border: 1px solid var(--color-linia-fosca);
-    border-radius: var(--radi-panell);
-    padding: 22px;
-    box-shadow: var(--ombra-fosca);
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    border-radius: var(--radi-targeta);
+    padding: 24px;
   }
 
-  .sala-capcalera {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .sala-titol {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .torn {
-    font-size: 13px;
-    color: var(--color-text-fosc-suau);
-  }
-
-  .ocupacio {
+  .numero {
+    flex: none;
+    min-width: 2.2rem;
+    font-variant-numeric: tabular-nums;
     font-family: var(--font-titol);
     font-size: 1.6rem;
+    line-height: 1;
+    color: var(--color-sorra);
   }
 
-  .taules {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .taula {
-    aspect-ratio: 1;
-    border: 1.5px solid var(--color-pissarra);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
+  h3 {
+    font-size: 1.1rem;
     font-weight: 600;
+    color: var(--color-paper);
   }
 
-  .taula--rodona {
-    border-radius: 50%;
-  }
-
-  .taula--quadrada {
-    border-radius: var(--radi-element);
-  }
-
-  .taula--asseguts {
-    border-color: var(--color-sorra);
-    background: var(--color-sorra);
-    color: var(--color-mariner);
-  }
-
-  .taula--reservada {
-    background: var(--color-mariner);
-    color: var(--color-text-fosc-suau);
-  }
-
-  .taula--lliure {
-    border-style: dashed;
-    color: var(--color-maqueta-lliure);
-  }
-
-  .taula-detall {
-    font-size: 11px;
-    font-weight: 500;
-  }
-
-  /* Una taula reservada que arriba i passa a «asseguts» */
-  .arriba {
-    animation: arriba 6s ease-in-out 1.5s infinite alternate;
-  }
-
-  .arriba2 {
-    animation-delay: 3.5s;
-  }
-
-  @keyframes arriba {
-    0%,
-    30% {
-      background: var(--color-mariner);
-      border-color: var(--color-pissarra);
-      color: var(--color-text-fosc-suau);
-    }
-    40%,
-    100% {
-      background: var(--color-sorra);
-      border-color: var(--color-sorra);
-      color: var(--color-mariner);
-    }
-  }
-
-  .llegenda {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    font-size: 12px;
-    color: var(--color-text-fosc-suau);
-  }
-
-  .llegenda > span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .mostra {
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-  }
-
-  .mostra--asseguts {
-    background: var(--color-sorra);
-  }
-
-  .mostra--reservada {
-    border: 1.5px solid var(--color-pissarra);
-  }
-
-  .mostra--lliure {
-    border: 1.5px dashed var(--color-pissarra);
+  .moment p {
+    margin-top: 6px;
+    line-height: 1.6;
+    color: var(--color-text-fosc);
   }
 </style>
