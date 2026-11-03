@@ -32,7 +32,7 @@ pnpm preview   # serveix dist/ a http://localhost:4321
 |---|---|
 | **Textos** en català | [`src/i18n/ca.ts`](src/i18n/ca.ts) |
 | Textos en castellà i anglès | [`src/i18n/es.ts`](src/i18n/es.ts), [`src/i18n/en.ts`](src/i18n/en.ts) |
-| **Textos provisionals** (els que eren entre claudàtors al disseny) | Bloc `provisional`, al principi de cada fitxer de textos |
+| **Textos provisionals** (dades legals pendents, entre claudàtors) | Bloc `provisional`, al principi de cada fitxer de textos |
 | **Nom de La Suite** (provisional) | `NOM_SUITE` a [`src/config/lloc.ts`](src/config/lloc.ts) |
 | Domini, telèfon, WhatsApp, correu, població | [`src/config/lloc.ts`](src/config/lloc.ts) |
 | Adreça (slug) de cada pàgina i idioma | [`src/i18n/rutes.ts`](src/i18n/rutes.ts) |
@@ -105,7 +105,7 @@ Quan canviï el domini (per exemple, a `arnaunin.cat`), canvia només `DOMINI` a
 
 ## Pendent
 
-- **Textos provisionals:** estudis, captures reals del sistema, plans i preus (bloc `provisional` dels fitxers de textos).
+- **Captures reals del sistema:** de moment, la pàgina de restaurants mostra maquetes marcades com a «Vista prèvia», «Exemple visual» i «Dades d’exemple».
 - **Textos legals:** són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
 - **Traduccions al castellà i a l'anglès:** primera versió, pendent de revisió per una persona.
 - Nom definitiu de La Suite i compra del domini.
