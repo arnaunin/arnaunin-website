@@ -9,9 +9,6 @@ import type { Traduccions } from './ca';
 
 export const en: Traduccions = {
   provisional: {
-    estudis: '[Your education]',
-    capturesSistema: '[Real screenshots of the system will go here]',
-    plans: '[Plans and pricing: offer still to be defined]',
     legal: '[Base text pending review]',
     titular: '[Full name]',
     nif: '[Tax ID pending]',
@@ -155,6 +152,7 @@ export const en: Traduccions = {
       ],
       dades: {
         estudis: 'Education',
+        estudisValor: 'Master’s in full-stack web development',
         eines: 'Tools',
         einesValor: 'Astro · Django · TypeScript · PostgreSQL',
         idiomes: 'Languages',
@@ -204,13 +202,27 @@ export const en: Traduccions = {
       subtitol: 'Suite of apps for restaurants',
       titolHtml: 'Your restaurant, open even when you’re <em>closed</em>.',
       entradeta:
-        'Website and phone bookings in one place, and service under control from the iPad. No per-diner fees. Try it: the form next to this is the same one your customers would use.',
+        'Website and phone bookings in one place, and service under control from the iPad. No per-diner fees. The booking form preview is an example of how your customers would see it.',
       botoPrincipal: 'Book a demo',
       botoSecundari: 'Why I built it',
-      widget: {
-        etiqueta: 'Widget placeholder',
-        titol: 'Booking widget',
-        text: 'The suite’s real booking widget will go here, so visitors can try it out.',
+      vistaPrevia: {
+        etiqueta: 'Preview',
+        descripcio: 'Visual example of the booking form as your customers would see it.',
+        restaurant: 'Your restaurant',
+        titol: 'Book a table',
+        dia: 'Day',
+        diaValor: 'Saturday',
+        persones: 'Guests',
+        personesValor: '4 people',
+        hora: 'Time',
+        hores: ['13:00', '13:30', '14:00', '14:30'],
+        horaTriada: '13:30',
+        nom: 'Name',
+        nomValor: 'Marta R.',
+        correu: 'Email',
+        correuValor: 'marta@example.com',
+        boto: 'Confirm booking',
+        nota: 'You’ll get a confirmation and a reminder by email.',
       },
     },
     perQue: {
@@ -218,7 +230,7 @@ export const en: Traduccions = {
       titol: 'I come from a family of restaurateurs. I know the headaches from the dining room.',
       paragrafs: [
         `I grew up in my family’s restaurant in ${POBLACIO}, and worked there for years while I was studying. I’ve waited tables, answered the phone in the middle of service and juggled bookings in a notebook full of crossings-out.`,
-        'When I started programming, the first thing I wanted to solve was these problems. This system wasn’t dreamed up in an office: it was built and tested in a real restaurant, service after service.',
+        'When I started programming, the first thing I wanted to solve was these problems. This system wasn’t dreamed up in an office: it was built and tested in a real restaurant, service after service. It already runs every service at my family’s restaurant.',
       ],
       etSona: 'Sound familiar?',
       mals: [
@@ -246,7 +258,7 @@ export const en: Traduccions = {
         {
           icona: 'campana',
           titol: 'Fewer no-shows',
-          text: 'Automatic confirmation and reminder, with a link so customers can cancel if they can’t make it.',
+          text: 'Confirmation and reminder by email, with a link so customers can cancel.',
         },
         {
           icona: 'persones',
@@ -260,6 +272,8 @@ export const en: Traduccions = {
       titol: 'The whole dining room at a glance.',
       text: 'When a customer arrives, you tap the table and that’s it. The whole team sees the same thing instantly, on the iPad at the bar or on their phone.',
       maqueta: {
+        exemple: 'Visual example',
+        dadesExemple: 'Sample data',
         torn: 'Lunch · Main room',
         ocupacio: '38 of 52 diners',
         enDirecte: 'Live service',
@@ -273,10 +287,10 @@ export const en: Traduccions = {
     },
     comFunciona: {
       eyebrow: 'How it works',
-      titol: 'Up and running in a few days. You don’t have to set anything up.',
+      titol: 'I set it up, so you don’t have to do a thing.',
       passos: [
         { titol: 'A visit to the restaurant', text: 'We look at how you work: rooms, tables, shifts and how bookings come in.' },
-        { titol: 'I set it up', text: 'The floor plan, opening hours and booking rules, just the way you work.' },
+        { titol: 'Tailored setup', text: 'The floor plan, opening hours and booking rules, just the way you work.' },
         {
           titol: 'On your website',
           text: 'The booking form on your website, whatever it is. And if you don’t have one, I’ll build it.',
@@ -287,9 +301,25 @@ export const en: Traduccions = {
         },
       ],
     },
-    plans: {
-      eyebrow: 'Plans',
-      titol: 'Pay only for what you use.',
+    moduls: {
+      eyebrow: 'Modules',
+      titol: 'Start with bookings and add only what you need.',
+      llista: [
+        { etiqueta: 'The core', titol: 'Bookings and floor plan', text: 'Website and phone bookings in one place, and the whole dining room live on the iPad.' },
+        { etiqueta: '', titol: 'Menu on your website', text: 'Your menu on your website, easy to read on a phone.' },
+        { etiqueta: 'Extra', titol: 'Takeaway shop', text: 'Takeaway orders from your website: one more sales channel, with no platform fees.' },
+        { etiqueta: 'Made to measure', titol: 'New SEO-optimised website', text: 'If you don’t have one or want a new one, a made-to-measure website, fast and ready for local SEO.' },
+      ],
+      properament: {
+        etiqueta: 'Coming soon',
+        llista: [
+          { titol: 'End-of-service checklist', text: 'A list of what the team needs to do before closing, so nothing is left undone.' },
+          { titol: 'Staff clock-in', text: 'A record of the team’s hours.' },
+          { titol: 'Orders during service', text: 'Paperless table orders.' },
+        ],
+      },
+      condicions: 'The first 3 restaurants: launch terms and setup included. I’ll tell you the terms in the demo, no strings attached.',
+      boto: 'Book a 15-minute demo',
     },
     crida: {
       titol: 'Want to see how it would work in your restaurant?',

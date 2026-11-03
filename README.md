@@ -4,7 +4,7 @@ Web personal d'Arnau Nin: portada amb els serveis i els projectes, i la pàgina 
 
 - **Idiomes:** català (per defecte, a `/`), castellà (`/es/`) i anglès (`/en/`).
 - **Disseny aprovat:** a la carpeta [`disseny/`](disseny/) (maquetes i encàrrec). És la referència; la web no en fa servir cap fitxer.
-- **Domini previst:** `arnaunin.cat` (encara pendent de comprar).
+- **Adreça actual:** <https://arnaunin.netlify.app>. **Domini previst:** `arnaunin.cat` (encara pendent de comprar).
 
 ## Arrencar-la en local
 
@@ -32,7 +32,7 @@ pnpm preview   # serveix dist/ a http://localhost:4321
 |---|---|
 | **Textos** en català | [`src/i18n/ca.ts`](src/i18n/ca.ts) |
 | Textos en castellà i anglès | [`src/i18n/es.ts`](src/i18n/es.ts), [`src/i18n/en.ts`](src/i18n/en.ts) |
-| **Textos provisionals** (els que eren entre claudàtors al disseny) | Bloc `provisional`, al principi de cada fitxer de textos |
+| **Textos provisionals** (dades legals pendents, entre claudàtors) | Bloc `provisional`, al principi de cada fitxer de textos |
 | **Nom de La Suite** (provisional) | `NOM_SUITE` a [`src/config/lloc.ts`](src/config/lloc.ts) |
 | Domini, telèfon, WhatsApp, correu, població | [`src/config/lloc.ts`](src/config/lloc.ts) |
 | Adreça (slug) de cada pàgina i idioma | [`src/i18n/rutes.ts`](src/i18n/rutes.ts) |
@@ -64,13 +64,13 @@ disseny/        Disseny aprovat (referència)
 ### Afegir o reanomenar una pàgina
 
 1. Afegeix-la al mapa de [`src/i18n/rutes.ts`](src/i18n/rutes.ts) amb l'adreça de cada idioma.
-2. Crea els tres fitxers a `src/pages/` (`/`, `/es/`, `/en/`).
+2. Crea els tres fitxers a `src/pages/` (`/`, `/es/`, `/en/`). Les pàgines legals són l’excepció: surten de `[legal].astro`, una ruta dinàmica per idioma.
 
 El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
 
 ## Elements preparats per més endavant
 
-- **Widget de reserves:** a la pàgina de La Suite hi ha `<div id="widget-reserves">` amb l'aspecte d'«espai reservat» ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)). Quan el widget estigui llest, se substitueix el contingut del `div` per l'etiqueta del web component i el seu `<script>`.
+- **Widget de reserves:** a la pàgina de La Suite hi ha `<div id="widget-reserves">` amb una **vista prèvia estàtica** del formulari, marcada com a «Vista prèvia» ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)). Quan el widget real estigui llest, se substitueix el contingut del `div` per l’etiqueta del web component i el seu `<script>`.
 - **Imatges per compartir:** són PNG estàtics. Si canvia el text del hero o el domini, torna-les a generar:
 
   ```bash
@@ -82,6 +82,8 @@ El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
   ```
 
 ## Formulari de contacte (Netlify Forms)
+
+> **Ara mateix està amagat**, igual que les pàgines legals, fins que hi hagi les dades del titular. Per tornar-ho a mostrar tot, posa `MOSTRA_PAGINES_LEGALS = true` a [`src/config/lloc.ts`](src/config/lloc.ts). Mentrestant, el contacte és per WhatsApp, telèfon i correu.
 
 El formulari de la portada ja està preparat per a Netlify Forms: nom, correu, missatge, casella de privacitat obligatòria i un camp antispam ocult (`bot-field`). Amb JavaScript es valida de manera accessible i s'envia sense sortir de la pàgina; sense JavaScript, funciona igual i Netlify mostra la seva pàgina de confirmació.
 
@@ -101,12 +103,12 @@ Encara no està connectada. La configuració ja és a [`netlify.toml`](netlify.t
 4. Activa Netlify Forms (apartat anterior).
 5. Quan compris `arnaunin.cat`: **Domain management** → **Add a domain** i segueix les instruccions de DNS. Netlify hi posa el certificat HTTPS sol.
 
-Si algun dia canvia el domini, actualitza `DOMINI` a [`src/config/lloc.ts`](src/config/lloc.ts) (canònica, sitemap, Open Graph i `robots.txt` en depenen) i torna a generar les imatges per compartir.
+Quan canviï el domini (per exemple, a `arnaunin.cat`), canvia només `DOMINI` a [`src/config/lloc.ts`](src/config/lloc.ts): la canònica, els `hreflang`, Open Graph, el sitemap, el `robots.txt` i les dades estructurades en depenen. Després torna a generar les imatges per compartir, que també hi mostren el domini.
 
 ## Pendent
 
-- **Textos provisionals:** estudis, captures reals del sistema, plans i preus (bloc `provisional` dels fitxers de textos).
-- **Textos legals:** són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
+- **Captures reals del sistema:** de moment, la pàgina de restaurants mostra maquetes marcades com a «Vista prèvia», «Exemple visual» i «Dades d’exemple».
+- **Textos legals (amagats):** les pàgines d’avís legal, privacitat i galetes i el formulari no es publiquen mentre `MOSTRA_PAGINES_LEGALS` sigui `false`. Són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
 - **Traduccions al castellà i a l'anglès:** primera versió, pendent de revisió per una persona.
 - Nom definitiu de La Suite i compra del domini.
 

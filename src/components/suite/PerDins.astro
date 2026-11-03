@@ -1,6 +1,7 @@
 ---
 /** El sistema per dins: maqueta del pla de sala en directe. */
 import AvisFlotant from '../comu/AvisFlotant.astro';
+import EtiquetaExemple from '../comu/EtiquetaExemple.astro';
 import { textos, type Idioma } from '../../i18n';
 
 interface Props {
@@ -38,11 +39,14 @@ const taules: Taula[] = [
       <p class="eyebrow">{s.eyebrow}</p>
       <h2 class="titol">{s.titol}</h2>
       <p class="paragraf">{s.text}</p>
-      <p class="provisional">{t.provisional.capturesSistema}</p>
     </div>
 
     <div class="maqueta revela" aria-hidden="true">
       <div class="sala">
+        <div class="etiquetes">
+          <EtiquetaExemple text={m.exemple} />
+          <EtiquetaExemple text={m.dadesExemple} />
+        </div>
         <div class="sala-capcalera">
           <div class="sala-titol">
             <p class="torn">{m.torn}</p>
@@ -110,9 +114,10 @@ const taules: Taula[] = [
     color: var(--color-text-fosc);
   }
 
-  .provisional {
-    font-size: 14px;
-    color: var(--color-text-fosc-suau);
+  .etiquetes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .maqueta {
@@ -122,6 +127,8 @@ const taules: Taula[] = [
   }
 
   .sala {
+    cursor: default;
+    user-select: none;
     background: var(--color-mariner);
     border: 1px solid var(--color-linia-fosca);
     border-radius: var(--radi-panell);

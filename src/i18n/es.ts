@@ -9,9 +9,6 @@ import type { Traduccions } from './ca';
 
 export const es: Traduccions = {
   provisional: {
-    estudis: '[Tus estudios]',
-    capturesSistema: '[Aquí irán capturas reales del sistema]',
-    plans: '[Planes y precios: pendiente de definir la oferta]',
     legal: '[Texto base pendiente de revisión]',
     titular: '[Nombre y apellidos completos]',
     nif: '[NIF pendiente]',
@@ -155,6 +152,7 @@ export const es: Traduccions = {
       ],
       dades: {
         estudis: 'Estudios',
+        estudisValor: 'Máster en desarrollo web full stack',
         eines: 'Herramientas',
         einesValor: 'Astro · Django · TypeScript · PostgreSQL',
         idiomes: 'Idiomas',
@@ -204,13 +202,27 @@ export const es: Traduccions = {
       subtitol: 'Sistema de aplicaciones para restaurantes',
       titolHtml: 'Tu restaurante, abierto incluso cuando <em>cierras</em>.',
       entradeta:
-        'Las reservas de la web y del teléfono en un solo lugar y el servicio bajo control desde el iPad. Sin comisiones por comensal. Pruébalo: el formulario de al lado es el mismo que tendrían tus clientes.',
+        'Las reservas de la web y del teléfono en un solo lugar y el servicio bajo control desde el iPad. Sin comisiones por comensal. La vista previa del formulario de reservas es un ejemplo de cómo lo verían tus clientes.',
       botoPrincipal: 'Pide una demo',
       botoSecundari: 'Por qué lo he hecho',
-      widget: {
-        etiqueta: 'Espacio para el widget',
-        titol: 'Widget de reservas',
-        text: 'Aquí se insertará el widget real de reservas de la suite, para que el visitante pueda probarlo.',
+      vistaPrevia: {
+        etiqueta: 'Vista previa',
+        descripcio: 'Ejemplo visual del formulario de reservas tal como lo verían tus clientes.',
+        restaurant: 'Tu restaurante',
+        titol: 'Reserva mesa',
+        dia: 'Día',
+        diaValor: 'Sábado',
+        persones: 'Personas',
+        personesValor: '4 personas',
+        hora: 'Hora',
+        hores: ['13:00', '13:30', '14:00', '14:30'],
+        horaTriada: '13:30',
+        nom: 'Nombre',
+        nomValor: 'Marta R.',
+        correu: 'Correo electrónico',
+        correuValor: 'marta@example.com',
+        boto: 'Confirmar la reserva',
+        nota: 'Recibirás la confirmación y un recordatorio por correo.',
       },
     },
     perQue: {
@@ -218,7 +230,7 @@ export const es: Traduccions = {
       titol: 'Vengo de una familia de hosteleros. Conozco los quebraderos de cabeza desde la sala.',
       paragrafs: [
         `He crecido en el restaurante de mi familia, en ${POBLACIO}, y he trabajado en él durante años mientras estudiaba. He servido mesas, he cogido el teléfono en pleno servicio y he cuadrado reservas en una libreta llena de tachones.`,
-        'Cuando empecé a programar, lo primero que quise resolver fueron estos problemas. Este sistema no lo ha pensado alguien desde una oficina: se ha hecho y se ha probado en un restaurante de verdad, servicio tras servicio.',
+        'Cuando empecé a programar, lo primero que quise resolver fueron estos problemas. Este sistema no lo ha pensado alguien desde una oficina: se ha hecho y se ha probado en un restaurante de verdad, servicio tras servicio. Ya funciona cada servicio en el restaurante de mi familia.',
       ],
       etSona: '¿Te suena?',
       mals: [
@@ -246,7 +258,7 @@ export const es: Traduccions = {
         {
           icona: 'campana',
           titol: 'Menos plantones',
-          text: 'Confirmación y recordatorio automáticos, con un enlace para que el cliente cancele si no puede venir.',
+          text: 'Confirmación y recordatorio por correo, con enlace para que el cliente pueda cancelar.',
         },
         {
           icona: 'persones',
@@ -260,6 +272,8 @@ export const es: Traduccions = {
       titol: 'Toda la sala, de un vistazo.',
       text: 'Cuando llega un cliente, tocas la mesa y listo. Todo el equipo ve lo mismo al momento, en el iPad de la barra o en el móvil.',
       maqueta: {
+        exemple: 'Ejemplo visual',
+        dadesExemple: 'Datos de ejemplo',
         torn: 'Comida · Sala principal',
         ocupacio: '38 de 52 comensales',
         enDirecte: 'Servicio en directo',
@@ -273,10 +287,10 @@ export const es: Traduccions = {
     },
     comFunciona: {
       eyebrow: 'Cómo funciona',
-      titol: 'Funcionando en pocos días. Tú no tienes que configurar nada.',
+      titol: 'Lo configuro yo, para que tú no tengas que hacer nada.',
       passos: [
         { titol: 'Visita al restaurante', text: 'Vemos cómo trabajáis: salas, mesas, turnos y cómo entran las reservas.' },
-        { titol: 'Lo configuro yo', text: 'El plano de sala, los horarios y las reglas de reserva, tal como trabajáis.' },
+        { titol: 'Configuración a medida', text: 'El plano de sala, los horarios y las reglas de reserva, tal como trabajáis.' },
         {
           titol: 'En tu web',
           text: 'El formulario de reservas en tu web, sea cual sea. Y si no tienes, te hago una.',
@@ -287,9 +301,25 @@ export const es: Traduccions = {
         },
       ],
     },
-    plans: {
-      eyebrow: 'Planes',
-      titol: 'Paga solo por lo que usas.',
+    moduls: {
+      eyebrow: 'Módulos',
+      titol: 'Empieza por las reservas y añade solo lo que necesites.',
+      llista: [
+        { etiqueta: 'El núcleo', titol: 'Reservas y plano de sala', text: 'Las reservas de la web y del teléfono en un solo lugar, y toda la sala en directo en el iPad.' },
+        { etiqueta: '', titol: 'Carta en la web', text: 'Tu carta en tu web, fácil de leer desde el móvil.' },
+        { etiqueta: 'Extra', titol: 'Tienda para llevar', text: 'Pedidos para llevar desde tu web: un canal de venta más, sin comisiones de plataformas.' },
+        { etiqueta: 'A medida', titol: 'Web nueva optimizada para SEO', text: 'Si no tienes o quieres renovarla, una web nueva hecha a medida, rápida y preparada para el SEO local.' },
+      ],
+      properament: {
+        etiqueta: 'Próximamente',
+        llista: [
+          { titol: 'Cierre de servicio', text: 'Una lista de lo que el equipo tiene que hacer antes de cerrar, para que no quede nada por hacer.' },
+          { titol: 'Fichaje del personal', text: 'Registro de horas del equipo.' },
+          { titol: 'Comandas durante el servicio', text: 'Comandas de sala sin papeles.' },
+        ],
+      },
+      condicions: 'Los 3 primeros restaurantes: condiciones de lanzamiento y configuración incluida. Te cuento las condiciones en la demo, sin compromiso.',
+      boto: 'Pide una demo de 15 minutos',
     },
     crida: {
       titol: '¿Quieres ver cómo funcionaría en tu restaurante?',

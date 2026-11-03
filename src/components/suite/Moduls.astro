@@ -1,0 +1,179 @@
+---
+/** Mòduls de La Suite: el nucli, els extres i el que arriba properament. Sense preus. */
+import Icona from '../comu/Icona.astro';
+import { WHATSAPP } from '../../config/lloc';
+import { textos, type Idioma } from '../../i18n';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const m = textos(Astro.props.idioma).suite.moduls;
+---
+
+<section id="moduls" class="clar vora-superior">
+  <div class="contenidor seccio moduls">
+    <div class="capcalera-seccio revela">
+      <p class="eyebrow">{m.eyebrow}</p>
+      <h2 class="titol">{m.titol}</h2>
+    </div>
+
+    <ul class="targetes" role="list">
+      {
+        m.llista.map((modul, i) => (
+          <li class:list={['targeta revela', { 'targeta--nucli': i === 0 }]}>
+            {modul.etiqueta && <span class="etiqueta">{modul.etiqueta}</span>}
+            <h3>{modul.titol}</h3>
+            <p>{modul.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="properament revela">
+      <p class="etiqueta-petita properament-etiqueta">{m.properament.etiqueta}</p>
+      <ul class="properament-llista" role="list">
+        {
+          m.properament.llista.map((item) => (
+            <li>
+              <strong>{item.titol}</strong>
+              <span>{item.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="condicions revela">
+      <p>{m.condicions}</p>
+      <a href={WHATSAPP} class="boto boto--fosc">
+        <Icona nom="whatsapp" mida={18} gruix={1.8} />
+        {m.boto}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .moduls {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .capcalera-seccio {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+  }
+
+  .targetes {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 20px;
+  }
+
+  .targeta {
+    background: var(--color-blanc);
+    border: 1px solid var(--color-linia-clara);
+    border-radius: var(--radi-targeta);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .targeta--nucli {
+    border-color: var(--color-mariner);
+    box-shadow: inset 0 0 0 1px var(--color-mariner);
+  }
+
+  .etiqueta {
+    width: fit-content;
+    padding: 4px 10px;
+    border-radius: var(--radi-pindola);
+    background: var(--color-crema);
+    border: 1px solid var(--color-linia-clara);
+    color: var(--color-torrat);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .targeta--nucli .etiqueta {
+    background: var(--color-mariner);
+    border-color: var(--color-mariner);
+    color: var(--color-sorra);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-tinta);
+  }
+
+  .targeta p {
+    line-height: 1.6;
+    color: var(--color-text-clar);
+  }
+
+  /* Properament: fila secundària, discreta. */
+  .properament {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px 20px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--color-maqueta-gris);
+  }
+
+  .properament-etiqueta {
+    color: var(--color-text-suau);
+  }
+
+  .properament-llista {
+    flex: 1 1 520px;
+    min-width: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .properament-llista li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1 1 220px;
+    padding: 10px 14px;
+    border: 1px dashed var(--color-maqueta-gris);
+    border-radius: var(--radi-element);
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--color-text-suau);
+  }
+
+  .properament-llista strong {
+    font-weight: 600;
+    color: var(--color-text-clar);
+  }
+
+  .condicions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    max-width: 680px;
+  }
+
+  .condicions p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-tinta);
+  }
+</style>

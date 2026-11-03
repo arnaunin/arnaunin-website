@@ -36,5 +36,21 @@ export function paginaDelCami(cami: string): { pagina: Pagina; idioma: Idioma } 
   return undefined;
 }
 
+/** Pàgines legals, que es generen amb una ruta dinàmica per idioma. */
+export const PAGINES_LEGALS = ['avisLegal', 'privacitat', 'galetes'] as const;
+export type PaginaLegal = (typeof PAGINES_LEGALS)[number];
+
+/**
+ * Camins de les pàgines legals d'un idioma, per a `getStaticPaths`.
+ * Si estan amagades (`MOSTRA_PAGINES_LEGALS`), no se'n genera cap.
+ */
+export function camisLegals(idioma: Idioma, mostra: boolean) {
+  if (!mostra) return [];
+  return PAGINES_LEGALS.map((pagina) => ({
+    params: { legal: rutes[pagina][idioma].split('/').filter(Boolean).at(-1) },
+    props: { pagina },
+  }));
+}
+
 /** Codi d'idioma per a `og:locale`. */
 export const LOCALE_OG: Record<Idioma, string> = { ca: 'ca_ES', es: 'es_ES', en: 'en_GB' };

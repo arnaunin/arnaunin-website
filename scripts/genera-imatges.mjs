@@ -10,6 +10,7 @@
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
+import { DOMINI } from '../src/config/lloc.ts';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
@@ -54,7 +55,7 @@ const og = (t) => `<!doctype html><html><head><style>${estils}
   <div class="nom">Arnau Nin</div>
   <div class="cos"><div class="eyebrow"><span class="punt"></span>${t.eyebrow}</div>
   <h1>${t.abans}<em>${t.em}</em>${t.despres}</h1></div>
-  <div class="domini">arnaunin.cat</div></div></body></html>`;
+  <div class="domini">${new URL(DOMINI).host}</div></div></body></html>`;
 
 const icona = `<!doctype html><html><head><style>${estils}
   .i { width: 180px; height: 180px; background: #1b2a33; display: flex; align-items: center; justify-content: center;
