@@ -1,10 +1,9 @@
 ---
 /** Secció destacada de La Suite (projecte principal) a l'inici. */
-import AvisFlotant from '../comu/AvisFlotant.astro';
 import Llum from '../comu/Llum.astro';
 import Marca from '../comu/Marca.astro';
 import Onades from '../comu/Onades.astro';
-import { WHATSAPP } from '../../config/lloc';
+import { NOM, WHATSAPP } from '../../config/lloc';
 import { ruta, textos, type Idioma } from '../../i18n';
 
 interface Props {
@@ -45,38 +44,15 @@ const t = textos(idioma).inici.suite;
           </div>
         </div>
 
-        <!-- Maqueta decorativa: les reserves de demà, amb el restaurant tancat -->
-        <div class="maqueta" aria-hidden="true">
-          <div class="targeta-reserves">
-            <div class="reserves-capcalera">
-              <div class="reserves-hora">
-                <p class="estat">{t.maqueta.estat}</p>
-                <p class="hora">{t.maqueta.hora}</p>
-              </div>
-              <p class="en-directe"><span class="punt"></span>{t.maqueta.enDirecte}</p>
-            </div>
-            <p class="etiqueta-petita">{t.maqueta.reservesDema}</p>
-            <ul class="reserves" role="list">
-              {
-                t.maqueta.reserves.map((r) => (
-                  <li class="revela">
-                    <span>
-                      <strong>{r.hora}</strong> · {r.nom}
-                    </span>
-                    <span class="detall">{r.detall}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <AvisFlotant
-            titol={t.maqueta.avisTitol}
-            text={t.maqueta.avisText}
-            posicio="left: -28px; bottom: -30px"
-            costat="esquerra"
-            ampladaMaxima={290}
-          />
-        </div>
+        <figure class="cita">
+          <blockquote>
+            <p>{t.cita.text}</p>
+          </blockquote>
+          <figcaption>
+            <strong>{NOM}</strong>
+            <span>{t.cita.detall}</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -180,68 +156,44 @@ const t = textos(idioma).inici.suite;
     margin-top: 6px;
   }
 
-  .maqueta {
+  /* Cita de l'Arnau (la frase del correu), en lloc d'una maqueta del sistema. */
+  .cita {
     flex: 1 1 380px;
     min-width: 0;
     max-width: 440px;
-    position: relative;
-  }
-
-  .targeta-reserves {
-    background: var(--color-mariner-profund);
-    border: 1px solid var(--color-linia-fosca);
-    border-radius: var(--radi-panell-petit);
-    padding: 24px;
-    box-shadow: var(--ombra-fosca);
+    margin: 0;
+    padding: 4px 0 4px 28px;
+    border-left: 2px solid var(--color-sorra);
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 22px;
   }
 
-  .reserves-capcalera {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
+  blockquote {
+    margin: 0;
   }
 
-  .reserves-hora {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .estat {
-    font-size: 13px;
-    color: var(--color-text-fosc-suau);
-  }
-
-  .hora {
+  blockquote p {
     font-family: var(--font-titol);
-    font-size: 2.2rem;
-    line-height: 1;
+    font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+    line-height: 1.3;
+    color: var(--color-paper);
+    text-wrap: pretty;
   }
 
-  .reserves {
-    padding: 0;
-    list-style: none;
+  figcaption {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .reserves li {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 14px;
-    border-radius: var(--radi-element);
-    background: var(--color-mariner);
+    gap: 4px;
     font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-fosc-suau);
   }
 
-  .detall {
-    color: var(--color-text-fosc-suau);
+  figcaption strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-sorra);
   }
 
   @media (max-width: 700px) {
@@ -252,6 +204,10 @@ const t = textos(idioma).inici.suite;
     .panell {
       padding: 36px 22px;
       gap: 48px;
+    }
+
+    .cita {
+      padding-left: 20px;
     }
   }
 </style>

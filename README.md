@@ -70,7 +70,7 @@ El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
 
 ## Elements preparats per més endavant
 
-- **Widget de reserves:** a la pàgina de La Suite hi ha `<div id="widget-reserves">` amb una **vista prèvia estàtica** del formulari, marcada com a «Vista prèvia» ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)). Quan el widget real estigui llest, se substitueix el contingut del `div` per l’etiqueta del web component i el seu `<script>`.
+- **Sense maquetes del sistema:** la pàgina de La Suite i la portada no mostren cap captura, maqueta ni widget del sistema (decisió de l’Arnau: qui ho vulgui veure, que demani la demo o el vídeo). El hero de La Suite té una targeta de text ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)).
 - **Imatges per compartir:** són PNG estàtics. Si canvia el text del hero o el domini, torna-les a generar:
 
   ```bash
@@ -83,7 +83,7 @@ El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
 
 ## Formulari de contacte (Netlify Forms)
 
-> **Ara mateix està amagat**, igual que les pàgines legals, fins que hi hagi les dades del titular. Per tornar-ho a mostrar tot, posa `MOSTRA_PAGINES_LEGALS = true` a [`src/config/lloc.ts`](src/config/lloc.ts). Mentrestant, el contacte és per WhatsApp, telèfon i correu.
+> **Ara mateix es mostra sense la casella de privacitat**, perquè les pàgines legals estan amagades fins que hi hagi les dades del titular. En el seu lloc hi ha una línia informativa breu. Amb `MOSTRA_PAGINES_LEGALS = true` ([`src/config/lloc.ts`](src/config/lloc.ts)) torna la casella. `MOSTRA_FORMULARI` amaga o mostra tot el formulari.
 
 El formulari de la portada ja està preparat per a Netlify Forms: nom, correu, missatge, casella de privacitat obligatòria i un camp antispam ocult (`bot-field`). Amb JavaScript es valida de manera accessible i s'envia sense sortir de la pàgina; sense JavaScript, funciona igual i Netlify mostra la seva pàgina de confirmació.
 
@@ -107,8 +107,7 @@ Quan canviï el domini (per exemple, a `arnaunin.cat`), canvia només `DOMINI` a
 
 ## Pendent
 
-- **Captures reals del sistema:** de moment, la pàgina de restaurants mostra maquetes marcades com a «Vista prèvia», «Exemple visual» i «Dades d’exemple».
-- **Textos legals (amagats):** les pàgines d’avís legal, privacitat i galetes i el formulari no es publiquen mentre `MOSTRA_PAGINES_LEGALS` sigui `false`. Són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
+- **Textos legals (amagats):** les pàgines d’avís legal, privacitat i galetes no es publiquen, i el formulari no demana acceptar la privacitat, mentre `MOSTRA_PAGINES_LEGALS` sigui `false`. Són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
 - **Traduccions al castellà i a l'anglès:** primera versió, pendent de revisió per una persona.
 - Nom definitiu de La Suite i compra del domini.
 

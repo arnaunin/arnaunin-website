@@ -1,6 +1,5 @@
 ---
-/** Hero de La Suite, amb una vista prèvia estàtica del formulari de reserves. */
-import EtiquetaExemple from '../comu/EtiquetaExemple.astro';
+/** Hero de La Suite: el missatge principal i, al costat, el resum del que inclou. */
 import Icona from '../comu/Icona.astro';
 import Llum from '../comu/Llum.astro';
 import Marca from '../comu/Marca.astro';
@@ -12,7 +11,7 @@ interface Props {
 }
 
 const t = textos(Astro.props.idioma).suite.hero;
-const v = t.vistaPrevia;
+const r = t.resum;
 ---
 
 <section class="hero fosc">
@@ -34,46 +33,22 @@ const v = t.vistaPrevia;
       </div>
     </div>
 
-    <div class="widget-columna entra d4">
-      <!--
-        Vista prèvia ESTÀTICA del formulari de reserves (no és interactiva).
-        Quan el widget real (un web component) estigui llest, es pot substituir
-        el contingut d'aquest div per l'etiqueta del widget i el seu <script>.
-      -->
-      <div id="widget-reserves" class="vista-previa" role="img" aria-label={`${v.etiqueta}: ${v.descripcio}`}>
-        <div class="vp-cap" aria-hidden="true">
-          <EtiquetaExemple text={v.etiqueta} fons="clar" />
-          <p class="vp-restaurant">{v.restaurant}</p>
-          <p class="vp-titol">{v.titol}</p>
-        </div>
-        <div class="vp-cos" aria-hidden="true">
-          <div class="vp-fila">
-            <div class="vp-camp">
-              <span class="vp-etiqueta">{v.dia}</span>
-              <span class="vp-valor"><Icona nom="calendari" mida={16} />{v.diaValor}</span>
-            </div>
-            <div class="vp-camp">
-              <span class="vp-etiqueta">{v.persones}</span>
-              <span class="vp-valor"><Icona nom="persones" mida={16} />{v.personesValor}</span>
-            </div>
-          </div>
-          <div class="vp-camp">
-            <span class="vp-etiqueta">{v.hora}</span>
-            <span class="vp-hores">
-              {v.hores.map((hora) => <span class:list={['vp-hora', { triada: hora === v.horaTriada }]}>{hora}</span>)}
-            </span>
-          </div>
-          <div class="vp-camp">
-            <span class="vp-etiqueta">{v.nom}</span>
-            <span class="vp-valor">{v.nomValor}</span>
-          </div>
-          <div class="vp-camp">
-            <span class="vp-etiqueta">{v.correu}</span>
-            <span class="vp-valor">{v.correuValor}</span>
-          </div>
-          <span class="vp-boto">{v.boto}</span>
-          <p class="vp-nota"><Icona nom="correu" mida={14} />{v.nota}</p>
-        </div>
+    <div class="resum-columna entra d4">
+      <div class="resum">
+        <div class="ratlla-accent" aria-hidden="true"></div>
+        <p class="resum-titol">{r.titol}</p>
+        <ul class="resum-llista" role="list">
+          {
+            r.punts.map((punt) => (
+              <li>
+                <span class="resum-icona" aria-hidden="true">
+                  <Icona nom="check" mida={16} gruix={2.4} />
+                </span>
+                {punt}
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </div>
@@ -141,149 +116,69 @@ const v = t.vistaPrevia;
     color: var(--color-text-fosc);
   }
 
-  .widget-columna {
-    flex: 1 1 420px;
+  .resum-columna {
+    flex: 1 1 380px;
     min-width: 0;
-    max-width: 480px;
+    max-width: 460px;
   }
 
-  /* Vista prèvia estàtica: res no hi sembla clicable. */
-  .vista-previa {
+  .resum {
     position: relative;
+    border: 1px solid var(--color-linia-fosca);
     border-radius: var(--radi-panell);
-    background: var(--color-crema);
-    color: var(--color-tinta);
-    box-shadow: var(--ombra-fosca);
-    padding: 28px;
+    background: var(--color-vel-fosc);
+    padding: 36px;
     display: flex;
     flex-direction: column;
-    gap: 22px;
-    cursor: default;
-    user-select: none;
+    gap: 20px;
   }
 
-  .vista-previa * {
-    cursor: default;
-  }
-
-  .vp-cap {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .vp-cap :global(.etiqueta-exemple) {
-    margin-bottom: 8px;
-  }
-
-  .vp-restaurant {
-    font-size: 13px;
-    color: var(--color-text-suau);
-  }
-
-  .vp-titol {
+  .resum-titol {
     font-family: var(--font-titol);
-    font-size: 1.6rem;
-    line-height: 1.15;
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    line-height: 1.2;
+    color: var(--color-paper);
+    text-wrap: balance;
   }
 
-  .vp-cos {
+  .resum-llista {
+    padding: 0;
+    list-style: none;
     display: flex;
     flex-direction: column;
+  }
+
+  .resum-llista li {
+    display: flex;
+    align-items: center;
     gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-linia-fosca);
+    font-size: 1.05rem;
+    color: var(--color-text-fosc);
   }
 
-  .vp-fila {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .vp-camp {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0;
-  }
-
-  .vp-etiqueta {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--color-text-suau);
-  }
-
-  .vp-valor {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 42px;
-    padding: 0 12px;
-    border: 1px solid var(--color-linia-clara);
-    border-radius: var(--radi-camp);
-    background: var(--color-blanc);
-    font-size: 14px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .vp-valor :global(svg) {
+  .resum-icona {
     flex: none;
-    color: var(--color-torrat);
-  }
-
-  .vp-hores {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  .vp-hora {
-    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--color-pissarra);
+    color: var(--color-sorra);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
-    border: 1px solid var(--color-linia-clara);
-    border-radius: var(--radi-camp);
-    background: var(--color-blanc);
-    font-size: 13px;
-    font-weight: 600;
   }
 
-  .vp-hora.triada {
-    border-color: var(--color-mariner);
-    background: var(--color-mariner);
-    color: var(--color-paper);
-  }
-
-  .vp-boto {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    margin-top: 4px;
-    border-radius: var(--radi-pindola);
-    background: var(--color-mariner);
-    color: var(--color-paper);
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  .vp-nota {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--color-text-suau);
-    text-align: center;
-  }
-
-  .vp-nota :global(svg) {
-    flex: none;
+  .resum-icona :global(svg) {
+    display: inline;
   }
 
   @media (max-width: 700px) {
+    .resum {
+      padding: 28px 24px;
+    }
+
     .hero-cos {
       padding-top: 56px;
       padding-bottom: 88px;
