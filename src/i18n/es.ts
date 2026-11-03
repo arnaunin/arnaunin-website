@@ -9,7 +9,6 @@ import type { Traduccions } from './ca';
 
 export const es: Traduccions = {
   provisional: {
-    estudis: '[Tus estudios]',
     legal: '[Texto base pendiente de revisión]',
     titular: '[Nombre y apellidos completos]',
     nif: '[NIF pendiente]',
@@ -153,6 +152,7 @@ export const es: Traduccions = {
       ],
       dades: {
         estudis: 'Estudios',
+        estudisValor: 'Máster en desarrollo web full stack',
         eines: 'Herramientas',
         einesValor: 'Astro · Django · TypeScript · PostgreSQL',
         idiomes: 'Idiomas',

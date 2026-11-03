@@ -14,7 +14,6 @@ export const ca = {
    * Tots els textos pendents de la web són aquí, en aquest bloc.
    */
   provisional: {
-    estudis: '[Els teus estudis]',
     legal: '[Text base pendent de revisió]',
     titular: '[Nom i cognoms complets]',
     nif: '[NIF pendent]',
@@ -158,6 +157,7 @@ export const ca = {
       ],
       dades: {
         estudis: 'Estudis',
+        estudisValor: 'Màster en desenvolupament web full stack',
         eines: 'Eines',
         einesValor: 'Astro · Django · TypeScript · PostgreSQL',
         idiomes: 'Idiomes',
