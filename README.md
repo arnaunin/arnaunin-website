@@ -70,7 +70,7 @@ El selector d'idioma, els `hreflang` i el sitemap s'actualitzen sols.
 
 ## Elements preparats per més endavant
 
-- **Widget de reserves:** a la pàgina de La Suite hi ha `<div id="widget-reserves">` amb una **vista prèvia estàtica** del formulari, marcada com a «Vista prèvia» ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)). Quan el widget real estigui llest, se substitueix el contingut del `div` per l’etiqueta del web component i el seu `<script>`.
+- **Sense maquetes del sistema:** la pàgina de La Suite i la portada no mostren cap captura, maqueta ni widget del sistema (decisió de l’Arnau: qui ho vulgui veure, que demani la demo o el vídeo). El hero de La Suite té una targeta de text ([`src/components/suite/Hero.astro`](src/components/suite/Hero.astro)).
 - **Imatges per compartir:** són PNG estàtics. Si canvia el text del hero o el domini, torna-les a generar:
 
   ```bash
@@ -107,7 +107,6 @@ Quan canviï el domini (per exemple, a `arnaunin.cat`), canvia només `DOMINI` a
 
 ## Pendent
 
-- **Captures reals del sistema:** de moment, la pàgina de restaurants mostra maquetes marcades com a «Vista prèvia», «Exemple visual» i «Dades d’exemple».
 - **Textos legals (amagats):** les pàgines d’avís legal, privacitat i galetes no es publiquen, i el formulari no demana acceptar la privacitat, mentre `MOSTRA_PAGINES_LEGALS` sigui `false`. Són una base i s'han de revisar. Hi falten el nom complet, el NIF i l'adreça (també al bloc `provisional`), i cal confirmar el termini de conservació de les dades.
 - **Traduccions al castellà i a l'anglès:** primera versió, pendent de revisió per una persona.
 - Nom definitiu de La Suite i compra del domini.

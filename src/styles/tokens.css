@@ -24,12 +24,11 @@
   --color-text-fosc-suau: #b9b2a6;   /* Text secundari sobre fons fosc */
   --color-blanc: #ffffff;
 
-  /* Colors de les maquetes il·lustratives (navegador, pla de sala) */
+  /* Colors de les maquetes il·lustratives (navegador i captures de projectes) */
   --color-maqueta-barra: #e8e2d8;
   --color-maqueta-gris: #c9bfb0;
   --color-maqueta-linia: #d6cec1;
   --color-maqueta-captura: #24353f;
-  --color-maqueta-lliure: #6f8290;
 
   /* Transparències (sorra i ombres) */
   --color-sorra-halo: rgb(217 179 140 / 0.55);
