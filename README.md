@@ -4,7 +4,7 @@ Web personal d'Arnau Nin: portada amb els serveis i els projectes, i la pàgina 
 
 - **Idiomes:** català (per defecte, a `/`), castellà (`/es/`) i anglès (`/en/`).
 - **Disseny aprovat:** a la carpeta [`disseny/`](disseny/) (maquetes i encàrrec). És la referència; la web no en fa servir cap fitxer.
-- **Domini previst:** `arnaunin.cat` (encara pendent de comprar).
+- **Adreça actual:** <https://arnaunin.netlify.app>. **Domini previst:** `arnaunin.cat` (encara pendent de comprar).
 
 ## Arrencar-la en local
 
@@ -101,7 +101,7 @@ Encara no està connectada. La configuració ja és a [`netlify.toml`](netlify.t
 4. Activa Netlify Forms (apartat anterior).
 5. Quan compris `arnaunin.cat`: **Domain management** → **Add a domain** i segueix les instruccions de DNS. Netlify hi posa el certificat HTTPS sol.
 
-Si algun dia canvia el domini, actualitza `DOMINI` a [`src/config/lloc.ts`](src/config/lloc.ts) (canònica, sitemap, Open Graph i `robots.txt` en depenen) i torna a generar les imatges per compartir.
+Quan canviï el domini (per exemple, a `arnaunin.cat`), canvia només `DOMINI` a [`src/config/lloc.ts`](src/config/lloc.ts): la canònica, els `hreflang`, Open Graph, el sitemap, el `robots.txt` i les dades estructurades en depenen. Després torna a generar les imatges per compartir, que també hi mostren el domini.
 
 ## Pendent
 

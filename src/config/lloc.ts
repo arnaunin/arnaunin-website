@@ -3,8 +3,13 @@
  * només cal canviar-ho aquí.
  */
 
-/** Domini definitiu (encara pendent de comprar). S'usa per a les URL canòniques i el sitemap. */
-export const DOMINI = 'https://arnaunin.cat';
+/**
+ * URL base de la web: l'ÚNIC lloc on es defineix.
+ * En surten la canònica, els `hreflang`, `og:url`, `og:image`, el sitemap, el `robots.txt`,
+ * les dades estructurades i el domini que es veu a les imatges per compartir.
+ * Quan tinguem `arnaunin.cat`, canvia només aquesta línia (i torna a generar les imatges).
+ */
+export const DOMINI = 'https://arnaunin.netlify.app';
 
 export const NOM = 'Arnau Nin';
 
