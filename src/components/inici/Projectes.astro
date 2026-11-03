@@ -23,7 +23,7 @@ const captures: Record<string, ImageMetadata> = { barca, forum };
     <div class="graella">
       {
         p.llista.map((projecte) => (
-          <article class="targeta-p revela">
+          <article class:list={['targeta-p revela', { 'targeta-p--sense-enllac': !projecte.publicada }]}>
             <div class="barra" aria-hidden="true">
               <span />
               <span />
@@ -45,11 +45,15 @@ const captures: Record<string, ImageMetadata> = { barca, forum };
               <p class="categoria">{projecte.categoria}</p>
               <h3 class="nom">{projecte.nom}</h3>
               <p class="text">{projecte.text}</p>
-              <a href={projecte.url} class="enllac" target="_blank" rel="noopener">
-                {p.visita}
-                <span class="visualment-amagat">: {projecte.nom} {t.comu.obreNovaFinestra}</span>
-                <span aria-hidden="true">&nbsp;→</span>
-              </a>
+              {projecte.publicada ? (
+                <a href={projecte.url} class="enllac" target="_blank" rel="noopener">
+                  {p.visita}
+                  <span class="visualment-amagat">: {projecte.nom} {t.comu.obreNovaFinestra}</span>
+                  <span aria-hidden="true">&nbsp;→</span>
+                </a>
+              ) : (
+                <p class="per-publicar">{p.perPublicar}</p>
+              )}
             </div>
           </article>
         ))
@@ -163,5 +167,26 @@ const captures: Record<string, ImageMetadata> = { barca, forum };
 
   .enllac:hover {
     color: var(--color-torrat);
+  }
+
+  /* Web encara no publicada al seu domini: sense enllaç ni efecte de clic. */
+  .per-publicar {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border: 1px solid var(--color-linia-clara);
+    border-radius: var(--radi-pindola);
+    background: var(--color-crema);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-suau);
+  }
+
+  .targeta-p--sense-enllac:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .targeta-p--sense-enllac:hover .captura-marc :global(img) {
+    transform: none;
   }
 </style>
