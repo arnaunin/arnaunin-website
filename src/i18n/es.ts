@@ -230,7 +230,7 @@ export const es: Traduccions = {
       titol: 'Vengo de una familia de hosteleros. Conozco los quebraderos de cabeza desde la sala.',
       paragrafs: [
         `He crecido en el restaurante de mi familia, en ${POBLACIO}, y he trabajado en él durante años mientras estudiaba. He servido mesas, he cogido el teléfono en pleno servicio y he cuadrado reservas en una libreta llena de tachones.`,
-        'Cuando empecé a programar, lo primero que quise resolver fueron estos problemas. Este sistema no lo ha pensado alguien desde una oficina: se ha hecho y se ha probado en un restaurante de verdad, servicio tras servicio.',
+        'Cuando empecé a programar, lo primero que quise resolver fueron estos problemas. Este sistema no lo ha pensado alguien desde una oficina: se ha hecho y se ha probado en un restaurante de verdad, servicio tras servicio. Ya funciona cada servicio en el restaurante de mi familia.',
       ],
       etSona: '¿Te suena?',
       mals: [
@@ -258,7 +258,7 @@ export const es: Traduccions = {
         {
           icona: 'campana',
           titol: 'Menos plantones',
-          text: 'Confirmación y recordatorio automáticos, con un enlace para que el cliente cancele si no puede venir.',
+          text: 'Confirmación y recordatorio por correo, con enlace para que el cliente pueda cancelar.',
         },
         {
           icona: 'persones',
@@ -287,10 +287,10 @@ export const es: Traduccions = {
     },
     comFunciona: {
       eyebrow: 'Cómo funciona',
-      titol: 'Funcionando en pocos días. Tú no tienes que configurar nada.',
+      titol: 'Lo configuro yo, para que tú no tengas que hacer nada.',
       passos: [
         { titol: 'Visita al restaurante', text: 'Vemos cómo trabajáis: salas, mesas, turnos y cómo entran las reservas.' },
-        { titol: 'Lo configuro yo', text: 'El plano de sala, los horarios y las reglas de reserva, tal como trabajáis.' },
+        { titol: 'Configuración a medida', text: 'El plano de sala, los horarios y las reglas de reserva, tal como trabajáis.' },
         {
           titol: 'En tu web',
           text: 'El formulario de reservas en tu web, sea cual sea. Y si no tienes, te hago una.',

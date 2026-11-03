@@ -230,7 +230,7 @@ export const en: Traduccions = {
       titol: 'I come from a family of restaurateurs. I know the headaches from the dining room.',
       paragrafs: [
         `I grew up in my family’s restaurant in ${POBLACIO}, and worked there for years while I was studying. I’ve waited tables, answered the phone in the middle of service and juggled bookings in a notebook full of crossings-out.`,
-        'When I started programming, the first thing I wanted to solve was these problems. This system wasn’t dreamed up in an office: it was built and tested in a real restaurant, service after service.',
+        'When I started programming, the first thing I wanted to solve was these problems. This system wasn’t dreamed up in an office: it was built and tested in a real restaurant, service after service. It already runs every service at my family’s restaurant.',
       ],
       etSona: 'Sound familiar?',
       mals: [
@@ -258,7 +258,7 @@ export const en: Traduccions = {
         {
           icona: 'campana',
           titol: 'Fewer no-shows',
-          text: 'Automatic confirmation and reminder, with a link so customers can cancel if they can’t make it.',
+          text: 'Confirmation and reminder by email, with a link so customers can cancel.',
         },
         {
           icona: 'persones',
@@ -287,10 +287,10 @@ export const en: Traduccions = {
     },
     comFunciona: {
       eyebrow: 'How it works',
-      titol: 'Up and running in a few days. You don’t have to set anything up.',
+      titol: 'I set it up, so you don’t have to do a thing.',
       passos: [
         { titol: 'A visit to the restaurant', text: 'We look at how you work: rooms, tables, shifts and how bookings come in.' },
-        { titol: 'I set it up', text: 'The floor plan, opening hours and booking rules, just the way you work.' },
+        { titol: 'Tailored setup', text: 'The floor plan, opening hours and booking rules, just the way you work.' },
         {
           titol: 'On your website',
           text: 'The booking form on your website, whatever it is. And if you don’t have one, I’ll build it.',

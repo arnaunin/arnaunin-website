@@ -235,7 +235,7 @@ export const ca = {
       titol: 'Vinc d’una família d’hostalers. Conec els mals de cap des de la sala.',
       paragrafs: [
         `He crescut al restaurant de la meva família, a ${POBLACIO}, i hi he treballat durant anys mentre estudiava. He servit taules, he agafat el telèfon enmig del servei i he quadrat reserves en una llibreta plena de guixades.`,
-        'Quan vaig començar a programar, el primer que vaig voler resoldre van ser aquests problemes. Aquest sistema no l’ha pensat algú des d’una oficina: s’ha fet i s’ha provat en un restaurant de debò, servei rere servei.',
+        'Quan vaig començar a programar, el primer que vaig voler resoldre van ser aquests problemes. Aquest sistema no l’ha pensat algú des d’una oficina: s’ha fet i s’ha provat en un restaurant de debò, servei rere servei. Ja funciona cada servei al restaurant de la meva família.',
       ],
       etSona: 'Et sona?',
       mals: [
@@ -263,7 +263,7 @@ export const ca = {
         {
           icona: 'campana',
           titol: 'Menys plantons',
-          text: 'Confirmació i recordatori automàtics, amb un enllaç perquè el client anul·li si no pot venir.',
+          text: 'Confirmació i recordatori per correu, amb enllaç perquè el client pugui cancel·lar.',
         },
         {
           icona: 'persones',
@@ -292,10 +292,10 @@ export const ca = {
     },
     comFunciona: {
       eyebrow: 'Com funciona',
-      titol: 'Funcionant en pocs dies. Tu no has de configurar res.',
+      titol: 'Ho configuro jo, perquè tu no hagis de fer res.',
       passos: [
         { titol: 'Visita al restaurant', text: 'Veiem com treballeu: sales, taules, torns i com entren les reserves.' },
-        { titol: 'Ho configuro jo', text: 'El pla de sala, els horaris i les regles de reserva, tal com treballeu.' },
+        { titol: 'Configuració a mida', text: 'El pla de sala, els horaris i les regles de reserva, tal com treballeu.' },
         {
           titol: 'A la teva web',
           text: 'El formulari de reserves a la teva web, sigui quina sigui. I si no en tens, te’n faig una.',
