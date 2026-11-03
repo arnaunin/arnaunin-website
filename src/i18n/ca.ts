@@ -105,18 +105,9 @@ export const ca = {
         botoPrincipal: 'Descobreix el sistema →',
         botoSecundari: 'Demana una demo',
       },
-      maqueta: {
-        estat: 'Restaurant tancat',
-        hora: '23:47',
-        enDirecte: 'En directe',
-        reservesDema: 'Reserves de demà',
-        reserves: [
-          { hora: '13:30', nom: 'Marta R.', detall: '4 pers. · Taula 7' },
-          { hora: '14:00', nom: 'Jordi P.', detall: '2 pers. · Terrassa 3' },
-          { hora: '14:30', nom: 'Família Soler', detall: '6 pers. · Taules 10+11' },
-        ],
-        avisTitol: 'Nova reserva per la web',
-        avisText: 'Demà 21:00 · 4 persones',
+      cita: {
+        text: '«He creat el sistema que m’hauria agradat tenir quan servia taules: tot el restaurant en un sol lloc, a l’iPad.»',
+        detall: 'Ja funciona cada servei al restaurant de la meva família.',
       },
     },
     noRestaurant: {

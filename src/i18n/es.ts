@@ -100,18 +100,9 @@ export const es: Traduccions = {
         botoPrincipal: 'Descubre el sistema →',
         botoSecundari: 'Pide una demo',
       },
-      maqueta: {
-        estat: 'Restaurante cerrado',
-        hora: '23:47',
-        enDirecte: 'En directo',
-        reservesDema: 'Reservas de mañana',
-        reserves: [
-          { hora: '13:30', nom: 'Marta R.', detall: '4 pers. · Mesa 7' },
-          { hora: '14:00', nom: 'Jordi P.', detall: '2 pers. · Terraza 3' },
-          { hora: '14:30', nom: 'Familia Soler', detall: '6 pers. · Mesas 10+11' },
-        ],
-        avisTitol: 'Nueva reserva por la web',
-        avisText: 'Mañana 21:00 · 4 personas',
+      cita: {
+        text: '«He creado el sistema que me habría gustado tener cuando servía mesas: todo el restaurante en un solo lugar, en el iPad.»',
+        detall: 'Ya funciona cada servicio en el restaurante de mi familia.',
       },
     },
     noRestaurant: {

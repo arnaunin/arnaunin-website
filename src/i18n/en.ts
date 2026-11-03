@@ -100,18 +100,9 @@ export const en: Traduccions = {
         botoPrincipal: 'Discover the system →',
         botoSecundari: 'Book a demo',
       },
-      maqueta: {
-        estat: 'Restaurant closed',
-        hora: '23:47',
-        enDirecte: 'Live',
-        reservesDema: 'Tomorrow’s bookings',
-        reserves: [
-          { hora: '13:30', nom: 'Marta R.', detall: '4 ppl · Table 7' },
-          { hora: '14:00', nom: 'Jordi P.', detall: '2 ppl · Terrace 3' },
-          { hora: '14:30', nom: 'Soler family', detall: '6 ppl · Tables 10+11' },
-        ],
-        avisTitol: 'New booking from the website',
-        avisText: 'Tomorrow 21:00 · 4 people',
+      cita: {
+        text: '“I built the system I wish I’d had when I was waiting tables: your whole restaurant in one place, on the iPad.”',
+        detall: 'It already runs every service at my family’s restaurant.',
       },
     },
     noRestaurant: {
