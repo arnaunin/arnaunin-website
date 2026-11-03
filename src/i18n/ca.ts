@@ -15,7 +15,6 @@ export const ca = {
    */
   provisional: {
     estudis: '[Els teus estudis]',
-    capturesSistema: '[Aquí hi aniran captures reals del sistema]',
     plans: '[Plans i preus: pendent de definir l’oferta]',
     legal: '[Text base pendent de revisió]',
     titular: '[Nom i cognoms complets]',
@@ -280,6 +279,7 @@ export const ca = {
       text: 'Quan arriba un client, toques la taula i ja està. Tot l’equip veu el mateix al moment, a l’iPad de la barra o al mòbil.',
       maqueta: {
         exemple: 'Exemple visual',
+        dadesExemple: 'Dades d’exemple',
         torn: 'Dinar · Sala principal',
         ocupacio: '38 de 52 comensals',
         enDirecte: 'Servei en directe',

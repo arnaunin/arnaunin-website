@@ -10,7 +10,6 @@ import type { Traduccions } from './ca';
 export const es: Traduccions = {
   provisional: {
     estudis: '[Tus estudios]',
-    capturesSistema: '[Aquí irán capturas reales del sistema]',
     plans: '[Planes y precios: pendiente de definir la oferta]',
     legal: '[Texto base pendiente de revisión]',
     titular: '[Nombre y apellidos completos]',
@@ -275,6 +274,7 @@ export const es: Traduccions = {
       text: 'Cuando llega un cliente, tocas la mesa y listo. Todo el equipo ve lo mismo al momento, en el iPad de la barra o en el móvil.',
       maqueta: {
         exemple: 'Ejemplo visual',
+        dadesExemple: 'Datos de ejemplo',
         torn: 'Comida · Sala principal',
         ocupacio: '38 de 52 comensales',
         enDirecte: 'Servicio en directo',
