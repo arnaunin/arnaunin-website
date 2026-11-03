@@ -187,6 +187,7 @@ export const ca = {
       privacitatAbans: 'He llegit i accepto la ',
       privacitatEnllac: 'política de privacitat',
       privacitatDespres: '.',
+      avisDades: 'Només faré servir les teves dades per respondre’t. No les cedeixo a ningú.',
       parany: 'No omplis aquest camp si ets una persona',
       envia: 'Envia',
       enviant: 'Enviant…',

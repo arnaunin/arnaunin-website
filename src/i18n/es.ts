@@ -182,6 +182,7 @@ export const es: Traduccions = {
       privacitatAbans: 'He leído y acepto la ',
       privacitatEnllac: 'política de privacidad',
       privacitatDespres: '.',
+      avisDades: 'Solo usaré tus datos para responderte. No los cedo a nadie.',
       parany: 'No rellenes este campo si eres una persona',
       envia: 'Enviar',
       enviant: 'Enviando…',

@@ -28,13 +28,16 @@ export const POBLACIO = 'Calafell';
 export const COMARCA = 'Baix Penedès';
 
 /**
- * Pàgines legals (avís legal, privacitat i galetes) i formulari de contacte.
- * Estan AMAGATS fins que tinguem les dades del titular (nom, NIF i adreça).
- * Amb `false`: no es generen les pàgines legals, el peu no hi enllaça i la portada
- * no mostra el formulari (el contacte queda per WhatsApp, telèfon i correu).
- * Per tornar-ho a mostrar, posa `true`.
+ * Pàgines legals (avís legal, privacitat i galetes).
+ * Estan AMAGADES fins que tinguem les dades del titular (nom, NIF i adreça).
+ * Amb `false`: no es generen, el peu no hi enllaça i el formulari no mostra la
+ * casella de privacitat (en el seu lloc hi ha una línia informativa breu).
+ * Per tornar-les a mostrar, posa `true`.
  */
 export const MOSTRA_PAGINES_LEGALS = false;
+
+/** Formulari de contacte de la portada (Netlify Forms). */
+export const MOSTRA_FORMULARI = true;
 
 /** Nom del formulari a Netlify Forms (és el que veuràs al tauler de Netlify). */
 export const NOM_FORMULARI = 'contacte';
