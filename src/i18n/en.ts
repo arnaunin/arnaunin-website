@@ -148,8 +148,6 @@ export const en: Traduccions = {
       dades: {
         estudis: 'Education',
         estudisValor: 'Master’s in full-stack web development',
-        eines: 'Tools',
-        einesValor: 'Astro · Django · TypeScript · PostgreSQL',
         idiomes: 'Languages',
         idiomesValor: 'Català · Castellano · English',
       },

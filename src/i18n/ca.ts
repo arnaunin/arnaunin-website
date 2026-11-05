@@ -153,8 +153,6 @@ export const ca = {
       dades: {
         estudis: 'Estudis',
         estudisValor: 'Màster en desenvolupament web full stack',
-        eines: 'Eines',
-        einesValor: 'Astro · Django · TypeScript · PostgreSQL',
         idiomes: 'Idiomes',
         idiomesValor: 'Català · Castellano · English',
       },
